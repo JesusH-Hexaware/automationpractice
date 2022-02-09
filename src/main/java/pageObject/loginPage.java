@@ -23,4 +23,9 @@ public class loginPage {
         return driver.findElement(emailCreate);
     }
 
+    By createAccountError = By.xpath("//li[normalize-space()='Invalid email address.']");
+    public WebElement getCreateAccountError(){
+        return driver.findElement(createAccountError);
+    }
+
 }

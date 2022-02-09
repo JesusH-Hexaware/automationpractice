@@ -30,17 +30,17 @@ public class test_01_RegisterUser extends base {
     }
 
     @Test(dataProvider = "tc01")
-    public void landingPage(String baseUrl,
-                            String email,
-                            String firstname,
-                            String lastname,
-                            String password,
-                            String address,
-                            String city,
-                            String state,
-                            String postalCode,
-                            String mobilePhone,
-                            String addressAlias
+    public void registerUser(String baseUrl,
+                             String email,
+                             String firstname,
+                             String lastname,
+                             String password,
+                             String address,
+                             String city,
+                             String state,
+                             String postalCode,
+                             String mobilePhone,
+                             String addressAlias
                             ) throws IOException {
 
         landingPage landingPage = new landingPage(driver);
