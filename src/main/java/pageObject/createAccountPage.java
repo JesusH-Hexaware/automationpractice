@@ -61,4 +61,49 @@ public class createAccountPage {
         return driver.findElement(registerBtn);
     }
 
+    By errorAlert = By.xpath("//div[@class='alert alert-danger']");
+    public WebElement getErrorAlert(){
+        return driver.findElement(errorAlert);
+    }
+
+    By errorAlertPhone = By.xpath("//li[normalize-space()='You must register at least one phone number.']");
+    public WebElement getErrorAlertPhone(){
+        return driver.findElement(errorAlertPhone);
+    }
+
+    By errorAlertLastname = By.xpath("//b[normalize-space()='lastname']");
+    public WebElement getErrorAlertLastname(){
+        return driver.findElement(errorAlertLastname);
+    }
+
+    By errorAlertFirstname = By.xpath("//b[normalize-space()='firstname']");
+    public WebElement getErrorAlertFirstname(){
+        return driver.findElement(errorAlertFirstname);
+    }
+
+    By errorAlertPassword = By.xpath("//b[normalize-space()='passwd']");
+    public WebElement getErrorAlertPassword(){
+        return driver.findElement(errorAlertPassword);
+    }
+
+    By errorAlertAddress = By.xpath("//b[normalize-space()='address1']");
+    public WebElement getErrorAlertAddress(){
+        return driver.findElement(errorAlertAddress);
+    }
+
+    By errorAlertCity = By.xpath("//b[normalize-space()='city']");
+    public WebElement getErrorAlertCity(){
+        return driver.findElement(errorAlertCity);
+    }
+
+    By errorAlertPostalcode = By.xpath("//li[contains(text(),'Zip/Postal')]");
+    public WebElement getErrorAlertPostalcode(){
+        return driver.findElement(errorAlertPostalcode);
+    }
+
+    By errorAlertState = By.xpath("//li[contains(text(),'country requires')]");
+    public WebElement getErrorAlertState(){
+        return driver.findElement(errorAlertState);
+    }
+
 }

@@ -3,7 +3,7 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="/home/noah/Code/Selenium">
         <classes>
-            <class name="com.hexaware.da.test_01_RegisterUser">
+            <class name="com.hexaware.da.test_01_registerUser">
                 <methods>
                     <include name="shouldAnswerWithTrue"/>
                 </methods>

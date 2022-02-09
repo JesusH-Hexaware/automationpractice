@@ -64,7 +64,7 @@ public class test_02_invalidEmail extends base {
 
     @AfterTest
     public void tearDown() {
-        //driver.close();
+        driver.close();
     }
 
 }

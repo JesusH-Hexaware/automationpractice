@@ -18,7 +18,7 @@ import resources.xlsxUtil;
 
 import java.io.IOException;
 
-public class test_01_RegisterUser extends base {
+public class test_01_registerUser extends base {
     public WebDriver driver;
     public String sheetName = "TC01";
     public static Logger log = (Logger) LogManager.getLogger(base.class.getName());
