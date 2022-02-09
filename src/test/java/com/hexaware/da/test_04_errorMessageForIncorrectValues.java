@@ -11,7 +11,6 @@ import org.testng.annotations.Test;
 import pageObject.createAccountPage;
 import pageObject.landingPage;
 import pageObject.loginPage;
-import pageObject.myAccountPage;
 import resources.base;
 import resources.xlsxUtil;
 
@@ -42,7 +41,6 @@ public class test_04_errorMessageForIncorrectValues extends base{
         landingPage landingPage = new landingPage(driver);
         loginPage loginPage = new loginPage(driver);
         createAccountPage createAccountPage = new createAccountPage(driver);
-        myAccountPage myAccountPage = new myAccountPage(driver);
 
         //driver.get(prop.getProperty("url"));
         driver.get(baseUrl);

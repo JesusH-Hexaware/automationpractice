@@ -15,4 +15,16 @@ public class landingPage {
     public WebElement getSingIn(){
         return driver.findElement(signIn);
     }
+
+    By womenSection = By.xpath("//a[@title='Women']");
+    public WebElement getWomenSection(){
+        return driver.findElement(womenSection);
+    }
+
+    By womenTshirts = By.cssSelector("li[class='sfHover'] a[title='T-shirts']");
+    public WebElement getWomenTshirts(){
+        return driver.findElement(womenTshirts);
+    }
+
+
 }
