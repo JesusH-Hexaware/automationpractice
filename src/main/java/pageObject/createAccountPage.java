@@ -21,6 +21,11 @@ public class createAccountPage {
         return driver.findElement(lastName);
     }
 
+    By email = By.id("email");
+    public WebElement getEmail(){
+        return driver.findElement(email);
+    }
+
     By password = By.id("passwd");
     public WebElement getPassword(){
         return driver.findElement(password);
@@ -104,6 +109,16 @@ public class createAccountPage {
     By errorAlertState = By.xpath("//li[contains(text(),'country requires')]");
     public WebElement getErrorAlertState(){
         return driver.findElement(errorAlertState);
+    }
+
+    By errorAlertEmail = By.xpath("//b[normalize-space()='email']");
+    public WebElement getErrorAlertEmail(){
+        return driver.findElement(errorAlertEmail);
+    }
+
+    By errorAlertMobilePhoneInvalid = By.xpath("//b[normalize-space()='phone_mobile']");
+    public WebElement getErrorAlertMobilePhoneInvalid(){
+        return driver.findElement(errorAlertMobilePhoneInvalid);
     }
 
 }
