@@ -21,4 +21,16 @@ public class myAccountPage {
         return driver.findElement(userAccountName);
     }
 
+    By orderHistory = By.xpath("//i[@class='icon-list-ol']");
+
+    public WebElement getOrderHistory(){
+        return driver.findElement(orderHistory);
+    }
+
+    By lastOrder = By.xpath("//table[@id='order-list']//tr[@class='first_item ']//td[@class='history_link bold footable-first-column']");
+
+    public WebElement getLastOrder(){
+        return driver.findElement(lastOrder);
+    }
+
 }

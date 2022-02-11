@@ -18,7 +18,7 @@ import java.io.IOException;
 public class test_02_invalidEmail extends base {
     public WebDriver driver;
     public String sheetName = "TC02";
-    public static Logger log = (Logger) LogManager.getLogger(base.class.getName());
+    public static Logger log = LogManager.getLogger(base.class.getName());
 
     @BeforeTest
     public void setupBrowser() throws IOException {
@@ -28,21 +28,24 @@ public class test_02_invalidEmail extends base {
 
     @Test(dataProvider = "tc02")
     public void invalidEmail(String baseUrl,
-                             String email) throws IOException{
+                             String email) throws IOException {
         landingPage landingPage = new landingPage(driver);
         loginPage loginPage = new loginPage(driver);
 
         driver.get(baseUrl);
+        log.info("1. Open this url  http://automationpractice.com/index.php");
         Assert.assertTrue(landingPage.getSingIn().isDisplayed());
         landingPage.getSingIn().click();
-        log.info("The user clicks on SignIn");
+        log.info("2. Click on sign in link.");
         Assert.assertTrue(loginPage.getEmailCreate().isDisplayed());
         loginPage.getEmailCreate().sendKeys(email);
         Assert.assertTrue(loginPage.getCreateAccountBtm().isDisplayed());
         loginPage.getCreateAccountBtm().click();
+        log.info("3. Enter invalid email address in the email box and click enter.");
         Assert.assertTrue(loginPage.getCreateAccountError().isDisplayed());
         String expectedText = "Invalid email address.";
         Assert.assertEquals(expectedText, loginPage.getCreateAccountError().getText());
+        log.info("4. Validate that an error message is displaying saying \"Invalid email address.\"");
 
     }
 

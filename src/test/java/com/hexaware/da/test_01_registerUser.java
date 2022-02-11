@@ -21,7 +21,7 @@ import java.io.IOException;
 public class test_01_registerUser extends base {
     public WebDriver driver;
     public String sheetName = "TC01";
-    public static Logger log = (Logger) LogManager.getLogger(base.class.getName());
+    public static Logger log = LogManager.getLogger(base.class.getName());
 
     @BeforeTest
     public void setupBrowser() throws IOException{
@@ -43,6 +43,7 @@ public class test_01_registerUser extends base {
                              String addressAlias
                             ) throws IOException {
 
+
         landingPage landingPage = new landingPage(driver);
         loginPage loginPage = new loginPage(driver);
         createAccountPage createAccountPage = new createAccountPage(driver);
@@ -50,13 +51,16 @@ public class test_01_registerUser extends base {
 
         //driver.get(prop.getProperty("url"));
         driver.get(baseUrl);
+        log.info("1. Open this url  http://automationpractice.com/index.php");
         Assert.assertTrue(landingPage.getSingIn().isDisplayed());
         landingPage.getSingIn().click();
-        log.info("The user clicks on SignIn");
+        log.info("2. Click on sign in link.");
         Assert.assertTrue(loginPage.getEmailCreate().isDisplayed());
         loginPage.getEmailCreate().sendKeys(email);
+        log.info("3. Enter your email address in 'Create and account' section.");
         Assert.assertTrue(loginPage.getCreateAccountBtm().isDisplayed());
         loginPage.getCreateAccountBtm().click();
+        log.info("4. Click on Create an Account button.");
         Assert.assertTrue(createAccountPage.getFirstName().isDisplayed());
         createAccountPage.getFirstName().sendKeys(firstname);
         Assert.assertTrue(createAccountPage.getlastName().isDisplayed());
@@ -77,12 +81,14 @@ public class test_01_registerUser extends base {
         Assert.assertTrue(createAccountPage.getAddressAlias().isDisplayed());
         createAccountPage.getAddressAlias().clear();
         createAccountPage.getAddressAlias().sendKeys(addressAlias);
+        log.info("5. Enter your Personal Information, Address and Contact info.");
         Assert.assertTrue(createAccountPage.getRegisterBtn().isDisplayed());
         createAccountPage.getRegisterBtn().click();
-
+        log.info("6. Click on Register button.");
         Assert.assertTrue(myAccountPage.getMyAccount().isDisplayed());
         String expectedText = (firstname + " " + lastname);
         Assert.assertEquals(expectedText, myAccountPage.getUserAccountName().getText());
+        log.info("7. Validate that user is created.");
 
     }
 

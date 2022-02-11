@@ -5,7 +5,7 @@
         <classes>
             <class name="com.hexaware.da.test_01_registerUser">
                 <methods>
-                    <include name="shouldAnswerWithTrue"/>
+                    <include name="registerUser"/>
                 </methods>
             </class>
         </classes>

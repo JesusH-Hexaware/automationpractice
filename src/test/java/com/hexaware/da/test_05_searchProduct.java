@@ -36,7 +36,6 @@ public class test_05_searchProduct extends base{
         tshirtsPage tshirtsPage = new tshirtsPage(driver);
         searchPage searchPage = new searchPage(driver);
 
-
         driver.get(baseUrl);
 
         Actions action = new Actions(driver);
@@ -60,8 +59,6 @@ public class test_05_searchProduct extends base{
         Assert.assertEquals(productName, searchedProduct);
         Assert.assertEquals(price, searchedPrice);
 
-
-
     }
 
     @DataProvider(name = "TC05")
@@ -84,6 +81,5 @@ public class test_05_searchProduct extends base{
     public void tearDown(){
         driver.close();
     }
-
 
 }

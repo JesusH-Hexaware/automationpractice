@@ -8,24 +8,45 @@ public class loginPage {
 
     public WebDriver driver;
 
-    public loginPage(WebDriver driver){
+    public loginPage(WebDriver driver) {
         this.driver = driver;
 
     }
 
     By createAccountBtn = By.xpath("//button[@id='SubmitCreate']");
-    public WebElement getCreateAccountBtm(){
+
+    public WebElement getCreateAccountBtm() {
         return driver.findElement(createAccountBtn);
     }
 
     By emailCreate = By.xpath("//input[@id='email_create']");
-    public WebElement getEmailCreate(){
+
+    public WebElement getEmailCreate() {
         return driver.findElement(emailCreate);
     }
 
     By createAccountError = By.xpath("//li[normalize-space()='Invalid email address.']");
-    public WebElement getCreateAccountError(){
+
+    public WebElement getCreateAccountError() {
         return driver.findElement(createAccountError);
+    }
+
+    By email = By.id("email");
+
+    public WebElement getUserEmail() {
+        return driver.findElement(email);
+    }
+
+    By password = By.id("passwd");
+
+    public WebElement getUserPassword(){
+        return driver.findElement(password);
+    }
+
+    By signInButton = By.id("SubmitLogin");
+
+    public WebElement getSignInButton(){
+        return driver.findElement(signInButton);
     }
 
 }
