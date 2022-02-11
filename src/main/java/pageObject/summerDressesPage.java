@@ -98,4 +98,24 @@ public class summerDressesPage {
     public WebElement orderSummary(){
         return driver.findElement(orderSummary);
     }
+
+    By addWishList = By.id("wishlist_button");
+
+    public WebElement addToWishList(){
+        return driver.findElement(addWishList);
+    }
+
+    By fancyError = By.xpath("//div[@class='fancybox-inner']");
+
+    public WebElement getError(){
+        return driver.findElement(fancyError);
+    }
+
+    By addWish = By.xpath("//a[@class='addToWishlist wishlistProd_6']");
+
+    public WebElement addWishList(){
+        return driver.findElement(addWish);
+    }
+
+
 }

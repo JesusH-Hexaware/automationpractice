@@ -1,41 +1,31 @@
-12:33:33.164 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle stcellrefe4e0type
-12:33:33.174 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle ctcols627ctype
-12:33:33.180 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle ctcola95ftype
-12:33:33.226 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle cthyperlinks6416type
-12:33:33.228 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle cthyperlink0c85type
-12:33:33.255 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
-12:33:33.257 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/worksheets/_rels/sheet4.xml.rels
-12:33:33.258 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
-12:33:33.321 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
-12:33:33.323 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/worksheets/_rels/sheet4.xml.rels
-12:33:33.325 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
-12:33:33.370 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle stcelltypebf95type
-12:33:33.384 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
-12:33:33.386 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/worksheets/_rels/sheet4.xml.rels
-12:33:33.387 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
-12:33:33.435 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
-12:33:33.437 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/worksheets/_rels/sheet4.xml.rels
-12:33:33.438 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
-12:33:33.481 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
-12:33:33.483 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/worksheets/_rels/sheet4.xml.rels
-12:33:33.484 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
-12:33:33.527 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle stcellstylexfid70c7type
-12:33:33.531 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle ctworkbookpr03a5type
-12:33:33.545 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
-12:33:33.546 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/worksheets/_rels/sheet4.xml.rels
-12:33:33.547 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
-12:33:40.421 [main] INFO  resources.base - 1. Open link http://automationpractice.com/index.php
-12:33:52.676 [main] INFO  resources.base - 2. Login to the website.
-12:33:52.865 [main] INFO  resources.base - 3. Move your cursor over Women's link
-12:34:02.105 [main] INFO  resources.base - 4. Click on sub menu 'Summer Dresses'
-12:34:02.274 [main] INFO  resources.base - 5. Mouse hover on the second product displayed
-12:34:08.426 [main] INFO  resources.base - 6. 'More' button will be displayed, click on 'More' button
-12:34:08.614 [main] INFO  resources.base - 7. Increase quantity to 2
-12:34:08.773 [main] INFO  resources.base - 8. Select size 'L'
-12:34:08.908 [main] INFO  resources.base - 9. Select color
-12:34:09.005 [main] INFO  resources.base - 10. Click 'Add to Cart' button
-12:34:11.657 [main] INFO  resources.base - 11. Click 'Proceed to checkout' button
-12:34:21.229 [main] INFO  resources.base - 12. Complete the buy order process till payment
-12:34:21.290 [main] INFO  resources.base - Order Reference in the summary = OGCWRKJFW
-12:34:24.230 [main] INFO  resources.base - Order Reference in table = OGCWRKJFW
-12:34:24.234 [main] INFO  resources.base - 13. Make sure that Product is ordered
+13:29:59.200 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle ctworkbook83c3type
+13:29:59.210 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle ctsheets49fdtype
+13:29:59.213 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle ctsheet4dbetype
+13:29:59.215 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle strelationshipid1e94type
+13:29:59.217 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle worksheetf539doctype
+13:29:59.225 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle ctworksheet530dtype
+13:29:59.232 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle ctsheetdata8408type
+13:29:59.235 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle ctrowdd39type
+13:29:59.240 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle ctcell842btype
+13:29:59.247 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle stcellrefe4e0type
+13:29:59.257 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle ctcols627ctype
+13:29:59.263 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle ctcola95ftype
+13:29:59.311 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle cthyperlinks6416type
+13:29:59.313 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle cthyperlink0c85type
+13:29:59.350 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+13:29:59.353 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/worksheets/_rels/sheet4.xml.rels
+13:29:59.354 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+13:29:59.431 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+13:29:59.433 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/worksheets/_rels/sheet4.xml.rels
+13:29:59.435 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+13:29:59.493 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle stcelltypebf95type
+13:29:59.514 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+13:29:59.516 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/worksheets/_rels/sheet4.xml.rels
+13:29:59.517 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+13:30:04.155 [main] INFO  resources.base - 1. Open link http://automationpractice.com/index.php
+13:30:04.362 [main] INFO  resources.base - 2. Move your cursor over Women's link
+13:30:06.019 [main] INFO  resources.base - 3. Click on sub menu 'Summer Dresses'
+13:30:06.186 [main] INFO  resources.base - 4. Mouse hover on the second product displayed
+13:30:06.405 [main] INFO  resources.base - 5. 'Add to Wishlist' will appear on the bottom of that product, click on it.
+13:30:07.244 [main] INFO  resources.base - Error Message: You must be logged in to manage your wishlist.
+13:30:07.247 [main] INFO  resources.base - 6. Verify that error message is displayed 'You must be logged in to manage your wish list.'

@@ -26,8 +26,6 @@ public class tshirtsPage {
         return driver.findElement(searchButton);
     }
 
-
-
     By price = By.cssSelector("div[class='right-block'] span[class='price product-price']");
     public WebElement getPrice(){
         return driver.findElement(price);
