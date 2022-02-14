@@ -3,11 +3,14 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="/home/noah/Code/Selenium">
         <classes>
-            <class name="com.hexaware.da.test_01_registerUser">
-                <methods>
-                    <include name="registerUser"/>
-                </methods>
-            </class>
+            <class name="com.hexaware.da.test_01_registerUser"></class>
+            <class name="com.hexaware.da.test_02_invalidEmail"></class>
+            <class name="com.hexaware.da.test_03_errorMessageForMandatoryFields"></class>
+            <class name="com.hexaware.da.test_04_errorMessageForIncorrectValues"></class>
+            <class name="com.hexaware.da.test_05_searchProduct"></class>
+            <class name="com.hexaware.da.test_06_buyProduct"></class>
+            <class name="com.hexaware.da.test_07_wishList"></class>
+            <class name="com.hexaware.da.test_08_verifyTotalPrice"></class>
         </classes>
     </test>
 </suite>

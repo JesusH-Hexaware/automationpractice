@@ -1,25 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: TestSuite
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 24.698 s <<< FAILURE! - in TestSuite
-com.hexaware.da.test_01_registerUser.registerUser[http://automationpractice.com/index.php, rtrjkyry@test.io, John, Wick, Pass1234, St Martin county, Florida, Florida, 12345, 777000000, test](1)  Time elapsed: 16.955 s  <<< FAILURE!
-org.openqa.selenium.NoSuchElementException: 
-Unable to find element with locator By.id: customer_firstname
-For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
-Build info: version: '4.1.2', revision: '9a5a329c5a'
-System info: host: 'Nirvana', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.13.0-28-generic', java.version: '11.0.14'
-Driver info: driver.version: RemoteWebDriver
-	at com.hexaware.da.test_01_registerUser.registerUser(test_01_registerUser.java:64)
-
-com.hexaware.da.test_01_registerUser.tearDown  Time elapsed: 17.012 s  <<< FAILURE!
-org.openqa.selenium.WebDriverException: 
-chrome not reachable
-  (Session info: chrome=98.0.4758.80)
-Build info: version: '4.1.2', revision: '9a5a329c5a'
-System info: host: 'Nirvana', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '5.13.0-28-generic', java.version: '11.0.14'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [0427fcca624f59717573614cb7febec3, close {}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 98.0.4758.80, chrome: {chromedriverVersion: 97.0.4692.71 (adefa7837d02a..., userDataDir: /tmp/.com.google.Chrome.HKkpkX}, goog:chromeOptions: {debuggerAddress: localhost:36807}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:36807/devtoo..., se:cdpVersion: 98.0.4758.80, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 0427fcca624f59717573614cb7febec3
-	at com.hexaware.da.test_01_registerUser.tearDown(test_01_registerUser.java:113)
-
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 213.843 s - in TestSuite

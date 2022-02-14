@@ -3,11 +3,13 @@ package com.hexaware.da;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.maven.surefire.shared.lang3.StringUtils;
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -20,6 +22,7 @@ import resources.base;
 import resources.xlsxUtil;
 
 import java.io.IOException;
+import java.time.Duration;
 
 public class test_08_verifyTotalPrice extends base {
 
@@ -39,7 +42,7 @@ public class test_08_verifyTotalPrice extends base {
                                  String password,
                                  String size,
                                  String quantity,
-                                 String incressQuantity) throws InterruptedException {
+                                 String incressQuantity) {
 
         landingPage landingPage = new landingPage(driver);
         loginPage loginPage = new loginPage(driver);
@@ -93,7 +96,6 @@ public class test_08_verifyTotalPrice extends base {
 
         summerDressesPage.orderQuantity().clear();
         summerDressesPage.orderQuantity().sendKeys(incressQuantity);
-        summerDressesPage.orderQuantity().sendKeys(Keys.RETURN);
         log.info("12. Change the quantity to 2.");
 
 
@@ -104,7 +106,8 @@ public class test_08_verifyTotalPrice extends base {
         float result = num * f;
         log.info("Total de la multiplicacion = " + result);
 
-        Thread.sleep(5000); //I need to change this
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[contains(@id, 'total_product_price')][contains(text()," + result + ")]")));
 
         String productAmount = (summerDressesPage.productAmountTotal().getText());
         log.info("\n --------- \n" + productAmount);
@@ -140,6 +143,6 @@ public class test_08_verifyTotalPrice extends base {
 
     @AfterTest
     public void tearDown() {
-        //driver.close();
+        driver.close();
     }
 }
