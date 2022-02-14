@@ -1,0 +1,12 @@
+target/
+.idea/
+.vscode/
+src/main/driver
+*.xlsx#
+*.log
+*.iml
+*.xlsx
+*.class
+.DS_Store
+.apt_generated
+.apt_generated_tests
