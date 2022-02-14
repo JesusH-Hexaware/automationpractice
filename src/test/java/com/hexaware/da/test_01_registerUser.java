@@ -51,7 +51,7 @@ public class test_01_registerUser extends base {
 
         //driver.get(prop.getProperty("url"));
         driver.get(baseUrl);
-        log.info("1. Open this url  http://automationpractice.com/index.php");
+        log.info("1. Open this url " + baseUrl);
         Assert.assertTrue(landingPage.getSingIn().isDisplayed());
         landingPage.getSingIn().click();
         log.info("2. Click on sign in link.");
