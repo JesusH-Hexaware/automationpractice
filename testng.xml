@@ -1,16 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
-    <test verbose="2" preserve-order="true" name="/home/noah/Code/Selenium">
+<suite name="All Test Suite" parallel="tests">
+<!--    <test name="test_01_registerUser">-->
+<!--        <classes>-->
+<!--            <class name="com.hexaware.da.test_01_registerUser"></class>-->
+<!--        </classes>-->
+<!--    </test>-->
+    <test name="test_02_invalidEmail">
         <classes>
-            <class name="com.hexaware.da.test_01_registerUser"></class>
             <class name="com.hexaware.da.test_02_invalidEmail"></class>
-            <class name="com.hexaware.da.test_03_errorMessageForMandatoryFields"></class>
-            <class name="com.hexaware.da.test_04_errorMessageForIncorrectValues"></class>
-            <class name="com.hexaware.da.test_05_searchProduct"></class>
-            <class name="com.hexaware.da.test_06_buyProduct"></class>
-            <class name="com.hexaware.da.test_07_wishList"></class>
-            <class name="com.hexaware.da.test_08_verifyTotalPrice"></class>
         </classes>
     </test>
+<!--    <test name="test_03_errorMessageForMandatoryFields">-->
+<!--        <classes>-->
+<!--            <class name="com.hexaware.da.test_03_errorMessageForMandatoryFields"></class>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test name="test_04_errorMessageForIncorrectValues">-->
+<!--        <classes>-->
+<!--            <class name="com.hexaware.da.test_04_errorMessageForIncorrectValues"></class>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test name="test_05_searchProduct">-->
+<!--        <classes>-->
+<!--            <class name="com.hexaware.da.test_05_searchProduct"></class>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test name="test_06_buyProduct">-->
+<!--        <classes>-->
+<!--            <class name="com.hexaware.da.test_06_buyProduct"></class>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test name="test_07_wishList">-->
+<!--        <classes>-->
+<!--            <class name="com.hexaware.da.test_07_wishList"></class>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test name="test_08_verifyTotalPrice">-->
+<!--        <classes>-->
+<!--            <class name="com.hexaware.da.test_08_verifyTotalPrice"></class>-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>

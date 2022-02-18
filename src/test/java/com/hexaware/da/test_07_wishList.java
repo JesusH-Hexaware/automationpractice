@@ -3,9 +3,6 @@ package com.hexaware.da;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
@@ -16,6 +13,9 @@ import resources.base;
 import resources.xlsxUtil;
 
 import java.io.IOException;
+
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class test_07_wishList extends base {
 
@@ -31,35 +31,25 @@ public class test_07_wishList extends base {
 
     @Test(dataProvider = "TC07")
     public void wishList(String baseUrl,
-                         String errorMsgTxt) {
+                         String errorMsgTxt,
+                         String dressPosition) {
 
-        landingPage landingPage = new landingPage(driver);
+        landingPage home = new landingPage(driver);
+        summerDressesPage dressesPage = new summerDressesPage(driver);
 
         driver.get(baseUrl);
-        log.info("1. Open link http://automationpractice.com/index.php");
-
-        Actions action = new Actions(driver);
-        WebElement womenSection = landingPage.getWomenSection();
-        action.moveToElement(womenSection).perform();
+        log.info("1. Open link " + baseUrl);
+        home.moveToWomenSection();
         log.info("2. Move your cursor over Women's link");
-
-
-        WebElement summerDresses = landingPage.getSummerDresses();
-        action.moveToElement(summerDresses).perform();
-        action.click().build().perform();
+        home.moveSummerDresses();
         log.info("3. Click on sub menu 'Summer Dresses'");
-
-        summerDressesPage summerDressesPage = new summerDressesPage(driver);
-        action.moveToElement(summerDressesPage.getDress()).perform();
+        dressesPage.userSelectsDress(dressPosition);
         log.info("4. Mouse hover on the second product displayed");
-
-        action.moveToElement(summerDressesPage.addWishList()).perform();
-        action.click().build().perform();
+        dressesPage.userClicksAddToWishlist(dressPosition);
         log.info("5. 'Add to Wishlist' will appear on the bottom of that product, click on it.");
-
-        String errorMsg = summerDressesPage.getError().getText();
-        log.info("Error Message: " + errorMsg);
-        Assert.assertEquals(errorMsg, errorMsgTxt);
+        assertTrue(dressesPage.userGetsError());
+        log.info("Error Msg " + dressesPage.userGetsErrorMsg());
+        assertEquals(dressesPage.userGetsErrorMsg(), errorMsgTxt);
         log.info("6. Verify that error message is displayed 'You must be logged in to manage your wish list.'");
 
     }

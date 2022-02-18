@@ -3,7 +3,6 @@ package com.hexaware.da;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
@@ -16,10 +15,12 @@ import resources.xlsxUtil;
 
 import java.io.IOException;
 
-public class test_04_errorMessageForIncorrectValues extends base{
+import static org.testng.Assert.assertTrue;
+
+public class test_04_errorMessageForIncorrectValues extends base {
     public WebDriver driver;
     public String sheetName = "TC04";
-    public static Logger log = (Logger) LogManager.getLogger(base.class.getName());
+    public static Logger log = LogManager.getLogger(base.class.getName());
 
     @BeforeTest
     public void setupBrowser() throws IOException {
@@ -36,61 +37,61 @@ public class test_04_errorMessageForIncorrectValues extends base{
                                            String address,
                                            String postalCode,
                                            String mobilePhone,
-                                           String invalidEmail) throws IOException {
+                                           String invalidEmail) {
 
-        landingPage landingPage = new landingPage(driver);
-        loginPage loginPage = new loginPage(driver);
-        createAccountPage createAccountPage = new createAccountPage(driver);
+        landingPage homePage = new landingPage(driver);
+        loginPage login = new loginPage(driver);
+        createAccountPage createAccount = new createAccountPage(driver);
 
         //driver.get(prop.getProperty("url"));
         driver.get(baseUrl);
-        Assert.assertTrue(landingPage.getSingIn().isDisplayed());
-        landingPage.getSingIn().click();
-        log.info("The user clicks on SignIn");
-        Assert.assertTrue(loginPage.getEmailCreate().isDisplayed());
-        loginPage.getEmailCreate().sendKeys(email);
-        Assert.assertTrue(loginPage.getCreateAccountBtm().isDisplayed());
-        loginPage.getCreateAccountBtm().click();
-
-        createAccountPage.getFirstName().sendKeys(firstname);
-        createAccountPage.getlastName().sendKeys(lastname);
-        createAccountPage.getEmail().clear();
-        createAccountPage.getEmail().sendKeys(invalidEmail);
-        createAccountPage.getAddress().sendKeys(address);
-        createAccountPage.getPostCode().sendKeys(postalCode);
-        createAccountPage.getMobilePhone().sendKeys(mobilePhone);
-
-        Assert.assertTrue(createAccountPage.getRegisterBtn().isDisplayed());
-        createAccountPage.getRegisterBtn().click();
-
-        Assert.assertTrue(createAccountPage.getErrorAlert().isDisplayed());
-        Assert.assertTrue(createAccountPage.getErrorAlertFirstname().isDisplayed());
-        Assert.assertTrue(createAccountPage.getErrorAlertLastname().isDisplayed());
-        Assert.assertTrue(createAccountPage.getErrorAlertEmail().isDisplayed());
-        Assert.assertTrue(createAccountPage.getErrorAlertAddress().isDisplayed());
-        Assert.assertTrue(createAccountPage.getErrorAlertPostalcode().isDisplayed());
-        Assert.assertTrue(createAccountPage.getErrorAlertMobilePhoneInvalid().isDisplayed());
-
+        log.info("1. Open this url" + baseUrl);
+        assertTrue(homePage.verifySignInLink());
+        homePage.userClicksOnSignInLink();
+        log.info("2. Click on sign in link");
+        assertTrue(login.verifyEmailCreateField());
+        login.userTypesAnEmail(email);
+        assertTrue(login.verifyCreateAccountBtn());
+        login.userClicksOnCreateAccountBtn();
+        log.info("3. Enter email address and click Register button");
+        createAccount.userTypesFirstName(firstname);
+        createAccount.userTypesLastName(lastname);
+        createAccount.userTypesEmail(invalidEmail);
+        createAccount.userTypesAddress(address);
+        createAccount.userTypesPostcode(postalCode);
+        createAccount.userTypesMobilephone(mobilePhone);
+        createAccount.userCliksRegisterBtn();
+        log.info("4. Enter incorrect values in fields like., enter numbers in first and last name, city field etc., and enter\n" +
+                "alphabets in Mobile no, Zip postal code etc., and click on 'Register' button");
+        assertTrue(createAccount.errorAlert());
+        assertTrue(createAccount.errorFirstname());
+        assertTrue(createAccount.errorLastname());
+        assertTrue(createAccount.errorEmail());
+        assertTrue(createAccount.errorPassword());
+        assertTrue(createAccount.errorAddress());
+        assertTrue(createAccount.errorPostalcode());
+        assertTrue(createAccount.errorMobilePhoneInvalid());
+        log.info("5. Verify that error messages for respective fields are displaying");
     }
 
     @DataProvider(name = "TC04")
-    public Object[][] getData() throws IOException{
+    public Object[][] getData() throws IOException {
         String path = prop.getProperty("excelPath");
         xlsxUtil xlsx = new xlsxUtil(path);
         int totalRows = xlsx.getRowCount(sheetName);
         int totalColumns = xlsx.getCellCount(sheetName, 1);
         String data[][] = new String[totalRows][totalColumns];
 
-        for (int i = 1; i <= totalRows; i++){
-            for (int j = 0; j < totalColumns; j++){
-                data[i-1][j] = xlsx.getCellData(sheetName, i , j);
+        for (int i = 1; i <= totalRows; i++) {
+            for (int j = 0; j < totalColumns; j++) {
+                data[i - 1][j] = xlsx.getCellData(sheetName, i, j);
             }
         }
         return data;
     }
 
     @AfterTest
-    public void tearDown(){
+    public void tearDown() {
         driver.close();
     }
 

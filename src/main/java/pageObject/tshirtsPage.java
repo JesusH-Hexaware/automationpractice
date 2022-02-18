@@ -1,34 +1,44 @@
 package pageObject;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class tshirtsPage {
     public WebDriver driver;
 
-    public tshirtsPage(WebDriver driver){
+    public tshirtsPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
-    By product = By.xpath("//a[normalize-space()='Faded Short Sleeve T-shirts']");
-    public WebElement getProduct(){
-        return driver.findElement(product);
+    @FindBy(xpath = "//a[normalize-space()='Faded Short Sleeve T-shirts']")
+    WebElement product;
+
+    @FindBy(css = "div[class='right-block'] span[class='price product-price']")
+    WebElement price;
+
+    @FindBy(id = "search_query_top")
+    WebElement searchProduct;
+
+    @FindBy(name = "submit_search")
+    WebElement searchButton;
+
+    public String productName() {
+        return product.getText().toUpperCase();
     }
 
-    By searchProduct = By.id("search_query_top");
-    public WebElement performSearchProduct(){
-        return driver.findElement(searchProduct);
+    public String price() {
+        return price.getText();
     }
 
-    By searchButton = By.name("submit_search");
-    public WebElement getSearchButton(){
-        return driver.findElement(searchButton);
+    public void userTypesProductToSearch(String productName) {
+        searchProduct.sendKeys(productName);
     }
 
-    By price = By.cssSelector("div[class='right-block'] span[class='price product-price']");
-    public WebElement getPrice(){
-        return driver.findElement(price);
+    public void userClicksSearchBtn() {
+        searchButton.click();
     }
 
 }

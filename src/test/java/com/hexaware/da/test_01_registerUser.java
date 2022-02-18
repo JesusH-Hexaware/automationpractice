@@ -3,8 +3,6 @@ package com.hexaware.da;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
@@ -17,6 +15,9 @@ import resources.base;
 import resources.xlsxUtil;
 
 import java.io.IOException;
+
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class test_01_registerUser extends base {
     public WebDriver driver;
@@ -41,54 +42,40 @@ public class test_01_registerUser extends base {
                              String postalCode,
                              String mobilePhone,
                              String addressAlias
-                            ) throws IOException {
+                            ) {
 
-
-        landingPage landingPage = new landingPage(driver);
+        landingPage homePage = new landingPage(driver);
         loginPage loginPage = new loginPage(driver);
-        createAccountPage createAccountPage = new createAccountPage(driver);
-        myAccountPage myAccountPage = new myAccountPage(driver);
+        createAccountPage createAccountForm = new createAccountPage(driver);
+        myAccountPage myAccount = new myAccountPage(driver);
 
         //driver.get(prop.getProperty("url"));
         driver.get(baseUrl);
         log.info("1. Open this url " + baseUrl);
-        Assert.assertTrue(landingPage.getSingIn().isDisplayed());
-        landingPage.getSingIn().click();
-        log.info("2. Click on sign in link.");
-        Assert.assertTrue(loginPage.getEmailCreate().isDisplayed());
-        loginPage.getEmailCreate().sendKeys(email);
-        log.info("3. Enter your email address in 'Create and account' section.");
-        Assert.assertTrue(loginPage.getCreateAccountBtm().isDisplayed());
-        loginPage.getCreateAccountBtm().click();
-        log.info("4. Click on Create an Account button.");
-        Assert.assertTrue(createAccountPage.getFirstName().isDisplayed());
-        createAccountPage.getFirstName().sendKeys(firstname);
-        Assert.assertTrue(createAccountPage.getlastName().isDisplayed());
-        createAccountPage.getlastName().sendKeys(lastname);
-        Assert.assertTrue(createAccountPage.getPassword().isDisplayed());
-        createAccountPage.getPassword().sendKeys(password);
-        Assert.assertTrue(createAccountPage.getAddress().isDisplayed());
-        createAccountPage.getAddress().sendKeys(address);
-        Assert.assertTrue(createAccountPage.getCity().isDisplayed());
-        createAccountPage.getCity().sendKeys(city);
-        Assert.assertTrue(createAccountPage.getState().isEnabled());
-        Select drpState = new Select(createAccountPage.getState());
-        drpState.selectByVisibleText(state);
-        Assert.assertTrue(createAccountPage.getPostCode().isDisplayed());
-        createAccountPage.getPostCode().sendKeys(postalCode);
-        Assert.assertTrue(createAccountPage.getMobilePhone().isDisplayed());
-        createAccountPage.getMobilePhone().sendKeys(mobilePhone);
-        Assert.assertTrue(createAccountPage.getAddressAlias().isDisplayed());
-        createAccountPage.getAddressAlias().clear();
-        createAccountPage.getAddressAlias().sendKeys(addressAlias);
-        log.info("5. Enter your Personal Information, Address and Contact info.");
-        Assert.assertTrue(createAccountPage.getRegisterBtn().isDisplayed());
-        createAccountPage.getRegisterBtn().click();
-        log.info("6. Click on Register button.");
-        Assert.assertTrue(myAccountPage.getMyAccount().isDisplayed());
+        assertTrue(homePage.verifySignInLink());
+        homePage.userClicksOnSignInLink();
+        log.info("2. Click on sign in link");
+        assertTrue(loginPage.verifyEmailCreateField());
+        loginPage.userTypesAnEmail(email);
+        log.info("3. Enter your email address in 'Create and account' section");
+        assertTrue(loginPage.verifyCreateAccountBtn());
+        loginPage.userClicksOnCreateAccountBtn();
+        log.info("4. Click on Create an Account button");
+        createAccountForm.userTypesFirstName(firstname);
+        createAccountForm.userTypesLastName(lastname);
+        createAccountForm.userTypesPassword(password);
+        createAccountForm.userTypesAddress(address);
+        createAccountForm.userTypesCity(city);
+        createAccountForm.userSelectsState(state);
+        createAccountForm.userTypesPostcode(postalCode);
+        createAccountForm.userTypesMobilephone(mobilePhone);
+        createAccountForm.userTypesAddressAlias(addressAlias);
+        log.info("5. Enter your Personal Information, Address and Contact info");
+        createAccountForm.userCliksRegisterBtn();
+        log.info("6. Click on Register button");
         String expectedText = (firstname + " " + lastname);
-        Assert.assertEquals(expectedText, myAccountPage.getUserAccountName().getText());
-        log.info("7. Validate that user is created.");
+        assertEquals(expectedText, myAccount.userAccountName());
+        log.info("7. Validate that user is created");
 
     }
 

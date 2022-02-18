@@ -1,8 +1,12 @@
 package pageObject;
 
-import org.openqa.selenium.By;
+import org.apache.maven.surefire.shared.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
@@ -11,130 +15,98 @@ public class summerDressesPage {
 
     public summerDressesPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
-    By dresses = By.xpath("//div[@class='product-image-container']");
+    @FindBy(xpath = "//div[@class='product-image-container']")
+    List<WebElement> dresses;
 
-    public WebElement getDress() {
-        List<WebElement> dressesList = driver.findElements(dresses);
-        Object dress = dressesList.get(1);
-        return (WebElement) dress;
+    @FindBy(css = "a[title='View'] span")
+    List<WebElement> moreButton;
+
+    @FindBy(id = "quantity_wanted")
+    WebElement quantity_wanted;
+
+    @FindBy(id = "group_1")
+    WebElement setSize;
+
+    @FindBy(name = "White")
+    WebElement whiteColor;
+
+    @FindBy(id = "add_to_cart")
+    WebElement add_to_cart;
+
+    @FindBy(xpath = "//span[normalize-space()='Proceed to checkout']")
+    WebElement checkOut;
+
+    @FindBy(xpath = "//div[@class='wishlist']")
+    List<WebElement> addWishList;
+
+    @FindBy(xpath = "//div[@class='fancybox-inner']")
+    WebElement fancyError;
+
+    @FindBy(id = "our_price_display")
+    WebElement price;
+
+
+    public void userSelectsDress(String num) {
+        List<WebElement> dressesList = dresses;
+        WebElement position = dressesList.get(Integer.parseInt(num));
+        Actions action = new Actions(driver);
+        action.moveToElement(position).perform();
+
     }
 
-    By moreButton = By.cssSelector("li[class='ajax_block_product col-xs-12 col-sm-6 col-md-4 last-line last-item-of-tablet-line last-mobile-line hovered'] a[title='View'] span");
+    public void userClicksMoreBtn(String n) {
+        List<WebElement> moreList = moreButton;
+        WebElement position = moreList.get(Integer.parseInt(n));
+        Actions action = new Actions(driver);
+        action.moveToElement(position).perform();
+        action.click().build().perform();
 
-    public WebElement getMore() {
-        return driver.findElement(moreButton);
     }
 
-    By quantity = By.id("quantity_wanted");
-
-    public WebElement setQuantity() {
-        return driver.findElement(quantity);
+    public void userSetsQuantity(String quantity) {
+        quantity_wanted.clear();
+        quantity_wanted.sendKeys(quantity);
     }
 
-    By size = By.id("group_1");
+    public void userSetsSize(String size) {
+        Select drpSize = new Select(setSize);
+        drpSize.selectByVisibleText(size);
 
-    public WebElement setSize() {
-        return driver.findElement(size);
     }
 
-    By color = By.id("color_8");
-
-    public WebElement setColor() {
-        return driver.findElement(color);
+    public void userChooseWhiteColor() {
+        whiteColor.click();
     }
 
-    By addCart = By.id("add_to_cart");
-
-    public WebElement addToCart() {
-        return driver.findElement(addCart);
+    public void userAddToCart() {
+        add_to_cart.click();
     }
 
-    By proceedCheckout = By.xpath("//span[normalize-space()='Proceed to checkout']");
-
-    public WebElement proceedToCheckout() {
-        return driver.findElement(proceedCheckout);
+    public void userClicksCheckOutBtn() {
+        checkOut.click();
     }
 
-    By summaryCheckout = By.cssSelector("a[class='button btn btn-default standard-checkout button-medium'] span");
-
-    public WebElement summaryCheckout() {
-        return driver.findElement(summaryCheckout);
+    public void userClicksAddToWishlist(String n) {
+        List<WebElement> addWishListList = addWishList;
+        WebElement position = addWishListList.get(Integer.parseInt(n));
+        Actions action = new Actions(driver);
+        action.moveToElement(position).perform();
+        action.click().build().perform();
     }
 
-    By addressCheckout = By.cssSelector("button[name='processAddress'] span");
-
-    public WebElement addressCheckout() {
-        return driver.findElement(addressCheckout);
+    public boolean userGetsError() {
+        return fancyError.isDisplayed();
     }
 
-    By termsAndConditions = By.id("cgv");
-
-    public WebElement acceptTermsAndConditions() {
-        return driver.findElement(termsAndConditions);
+    public String userGetsErrorMsg() {
+        return fancyError.getText();
     }
 
-    By shippingCheckout = By.cssSelector("button[name='processCarrier'] span");
-
-    public WebElement shippingCheckout() {
-        return driver.findElement(shippingCheckout);
+    public String userGetsUnitPrice() {
+        return StringUtils.substringAfterLast(price.getText(), "$");
     }
-
-    By paymentCheckout = By.cssSelector("a[title='Pay by bank wire']");
-
-    public WebElement paymentCheckout() {
-        return driver.findElement(paymentCheckout);
-    }
-
-    By confirmOrder = By.cssSelector("button[class='button btn btn-default button-medium'] span");
-
-    public WebElement confirmOrder() {
-        return driver.findElement(confirmOrder);
-    }
-
-    By orderSummary = By.xpath("//div[@class='box']");
-
-    public WebElement orderSummary() {
-        return driver.findElement(orderSummary);
-    }
-
-    By addWishList = By.id("wishlist_button");
-
-    public WebElement addToWishList() {
-        return driver.findElement(addWishList);
-    }
-
-    By fancyError = By.xpath("//div[@class='fancybox-inner']");
-
-    public WebElement getError() {
-        return driver.findElement(fancyError);
-    }
-
-    By addWish = By.xpath("//a[@class='addToWishlist wishlistProd_6']");
-
-    public WebElement addWishList() {
-        return driver.findElement(addWish);
-    }
-
-    By price = By.id("our_price_display");
-
-    public WebElement price() {
-        return driver.findElement(price);
-    }
-
-    By orderQuantity = By.xpath("//input[@class='cart_quantity_input form-control grey']");
-
-    public WebElement orderQuantity() {
-        return driver.findElement(orderQuantity);
-    }
-
-    By productAmountTotal = By.xpath("//span[contains(@id, 'total_product_price')][1]");
-    //By productAmountTotal = By.xpath("//td[@class='cart_total']");
-
-    public WebElement productAmountTotal() {
-        return driver.findElement(productAmountTotal);
-    }
-
 
 }

@@ -3,7 +3,6 @@ package com.hexaware.da;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
@@ -11,16 +10,18 @@ import org.testng.annotations.Test;
 import pageObject.createAccountPage;
 import pageObject.landingPage;
 import pageObject.loginPage;
-import pageObject.myAccountPage;
 import resources.base;
 import resources.xlsxUtil;
 
 import java.io.IOException;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
 public class test_03_errorMessageForMandatoryFields extends base{
     public WebDriver driver;
     public String sheetName = "TC03";
-    public static Logger log = (Logger) LogManager.getLogger(base.class.getName());
+    public static Logger log = LogManager.getLogger(base.class.getName());
 
     @BeforeTest
     public void setupBrowser() throws IOException {
@@ -30,38 +31,35 @@ public class test_03_errorMessageForMandatoryFields extends base{
 
     @Test(dataProvider = "tc03")
     public void registerUser(String baseUrl,
-                             String email) throws IOException {
+                             String email) {
 
-        landingPage landingPage = new landingPage(driver);
-        loginPage loginPage = new loginPage(driver);
-        createAccountPage createAccountPage = new createAccountPage(driver);
-        myAccountPage myAccountPage = new myAccountPage(driver);
+        landingPage homePage = new landingPage(driver);
+        loginPage login = new loginPage(driver);
+        createAccountPage createAccountForm = new createAccountPage(driver);
 
         //driver.get(prop.getProperty("url"));
         driver.get(baseUrl);
-        Assert.assertTrue(landingPage.getSingIn().isDisplayed());
-        landingPage.getSingIn().click();
-        log.info("The user clicks on SignIn");
-        Assert.assertTrue(loginPage.getEmailCreate().isDisplayed());
-        loginPage.getEmailCreate().sendKeys(email);
-        Assert.assertTrue(loginPage.getCreateAccountBtm().isDisplayed());
-        loginPage.getCreateAccountBtm().click();
-        Assert.assertTrue(createAccountPage.getRegisterBtn().isDisplayed());
-        createAccountPage.getRegisterBtn().click();
-
-        Assert.assertTrue(createAccountPage.getErrorAlert().isDisplayed());
-
-        Assert.assertTrue(createAccountPage.getErrorAlertPhone().isDisplayed());
+        log.info("1. Open this url" + baseUrl);
+        assertTrue(homePage.verifySignInLink());
+        homePage.userClicksOnSignInLink();
+        log.info("2. Click on sign in link");
+        login.userTypesAnEmail(email);
+        login.userClicksOnCreateAccountBtn();
+        log.info("3. Enter email address and click Register button");
+        createAccountForm.userCliksRegisterBtn();
+        log.info("4. Leave the mandatory fields (marked with *) blank and click Register button");
+        assertTrue(createAccountForm.errorAlert());
+        assertTrue(createAccountForm.errorPhone());
         String expectedText = "You must register at least one phone number.";
-        Assert.assertEquals(expectedText, createAccountPage.getErrorAlertPhone().getText());
-
-        Assert.assertTrue(createAccountPage.getErrorAlertLastname().isDisplayed());
-        Assert.assertTrue(createAccountPage.getErrorAlertFirstname().isDisplayed());
-        Assert.assertTrue(createAccountPage.getErrorAlertPassword().isDisplayed());
-        Assert.assertTrue(createAccountPage.getErrorAlertAddress().isDisplayed());
-        Assert.assertTrue(createAccountPage.getErrorAlertCity().isDisplayed());
-        Assert.assertTrue(createAccountPage.getErrorAlertPostalcode().isDisplayed());
-        Assert.assertTrue(createAccountPage.getErrorAlertState().isDisplayed());
+        assertEquals(expectedText, createAccountForm.errorPhoneMsg());
+        assertTrue(createAccountForm.errorLastname());
+        assertTrue(createAccountForm.errorFirstname());
+        assertTrue(createAccountForm.errorPassword());
+        assertTrue(createAccountForm.errorAddress());
+        assertTrue(createAccountForm.errorCity());
+        assertTrue(createAccountForm.errorPostalcode());
+        assertTrue(createAccountForm.errorState());
+        log.info("5. Verify that error has been displayed for the mandatory fields");
 
     }
 

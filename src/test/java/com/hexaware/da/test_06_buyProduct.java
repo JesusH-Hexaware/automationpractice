@@ -2,24 +2,18 @@ package com.hexaware.da;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.maven.surefire.shared.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import pageObject.landingPage;
-import pageObject.loginPage;
-import pageObject.myAccountPage;
-import pageObject.summerDressesPage;
+import pageObject.*;
 import resources.base;
 import resources.xlsxUtil;
 
 import java.io.IOException;
+
+import static org.testng.Assert.assertEquals;
 
 public class test_06_buyProduct extends base {
     public WebDriver driver;
@@ -38,68 +32,57 @@ public class test_06_buyProduct extends base {
                            String userEmail,
                            String userPassword,
                            String quantity,
-                           String size) throws IOException {
-        landingPage landingPage = new landingPage(driver);
+                           String size,
+                           String dressPosition) {
+
+        landingPage home = new landingPage(driver);
         loginPage loginPage = new loginPage(driver);
+        summerDressesPage dressesPage = new summerDressesPage(driver);
+        shoppingCartSumary cartSummary = new shoppingCartSumary(driver);
+        shoppingAddress cartAddress = new shoppingAddress(driver);
+        shoppingShipping cartShipping = new shoppingShipping(driver);
+        shoppingPayment cartPayment = new shoppingPayment(driver);
+        shoppingOrderSummary cartConfirmOrder = new shoppingOrderSummary(driver);
+        myAccountPage myAccount = new myAccountPage(driver);
 
         driver.get(baseUrl);
-        log.info("1. Open link http://automationpractice.com/index.php");
-        landingPage.getSingIn().click();
-        loginPage.getUserEmail().sendKeys(userEmail);
-        loginPage.getUserPassword().sendKeys(userPassword);
-        loginPage.getSignInButton().click();
+        log.info("1. Open this url " + baseUrl);
+        home.userClicksOnSignInLink();
+        loginPage.userTypesLoginEmail(userEmail);
+        loginPage.userTypesLoginPassword(userPassword);
+        loginPage.userClicksSignInButton();
         log.info("2. Login to the website.");
-
-        Actions action = new Actions(driver);
-        WebElement womenSection = landingPage.getWomenSection();
-        action.moveToElement(womenSection).perform();
+        home.moveToWomenSection();
         log.info("3. Move your cursor over Women's link");
-
-        WebElement summerDresses = landingPage.getSummerDresses();
-        action.moveToElement(summerDresses).perform();
-        action.click().build().perform();
+        home.moveSummerDresses();
         log.info("4. Click on sub menu 'Summer Dresses'");
-
-        summerDressesPage summerDressesPage = new summerDressesPage(driver);
-        action.moveToElement(summerDressesPage.getDress()).perform();
+        dressesPage.userSelectsDress(dressPosition);
         log.info("5. Mouse hover on the second product displayed");
-
-        action.moveToElement(summerDressesPage.getMore()).perform();
-        action.click().build().perform();
+        dressesPage.userClicksMoreBtn(dressPosition);
         log.info("6. 'More' button will be displayed, click on 'More' button");
-        summerDressesPage.setQuantity().clear();
-        summerDressesPage.setQuantity().sendKeys(quantity);
+        dressesPage.userSetsQuantity(quantity);
         log.info("7. Increase quantity to 2");
-        Select drpSize = new Select(summerDressesPage.setSize());
-        drpSize.selectByVisibleText(size);
+        dressesPage.userSetsSize(size);
         log.info("8. Select size 'L'");
-        summerDressesPage.setColor().click();
+        dressesPage.userChooseWhiteColor();
         log.info("9. Select color");
-        summerDressesPage.addToCart().click();
+        dressesPage.userAddToCart();
         log.info("10. Click 'Add to Cart' button");
-        summerDressesPage.proceedToCheckout().click();
+        dressesPage.userClicksCheckOutBtn();
         log.info("11. Click 'Proceed to checkout' button");
-        summerDressesPage.summaryCheckout().click();
-        summerDressesPage.addressCheckout().click();
-        summerDressesPage.acceptTermsAndConditions().click();
-        summerDressesPage.shippingCheckout().click();
-        summerDressesPage.paymentCheckout().click();
-        summerDressesPage.confirmOrder().click();
+        cartSummary.userClicksProceedToCheckout();
+        cartAddress.userClicksProceedToCheckout();
+        cartShipping.userAcceptsTermsAndConditions();
+        cartShipping.userClicksProceedToCheckout();
+        cartPayment.userSelectsPayByBankWire();
+        cartConfirmOrder.userClicksIConfirmMyOrder();
         log.info("12. Complete the buy order process till payment");
-        String summary = summerDressesPage.orderSummary().getText();
-
-        summary = StringUtils.substringAfterLast(summary, "- Do not forget to insert your order reference ");
-        summary = StringUtils.substringBeforeLast(summary, " in the subject of your bank wire.");
-        String orderRef = summary;
-        log.info("Order Reference in the summary = " + orderRef);
-
-        myAccountPage myAccountPage = new myAccountPage(driver);
-        myAccountPage.getUserAccountName().click();
-        myAccountPage.getOrderHistory().click();
-
-        String order = myAccountPage.getLastOrder().getText();
-        log.info("Order Reference in table = " + order);
-        Assert.assertEquals(order, orderRef);
+        log.info("Order Reference in the summary = " + cartConfirmOrder.orderReference());
+        String orderReference = cartConfirmOrder.orderReference();
+        myAccount.userClicksOnTheirAccount();
+        myAccount.userClicksOnOrderHistory();
+        log.info("Order Reference in orders table = " + myAccount.userGetsLastOrder());
+        assertEquals(orderReference, myAccount.userGetsLastOrder());
         log.info("13. Make sure that Product is ordered");
 
     }

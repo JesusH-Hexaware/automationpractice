@@ -1,38 +1,55 @@
 package pageObject;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class landingPage {
     public WebDriver driver;
 
     public landingPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
-    By signIn = By.xpath("//a[@class='login']");
+    @FindBy(xpath = "//a[@class='login']")
+    WebElement signInLink;
 
-    public WebElement getSingIn() {
-        return driver.findElement(signIn);
+    @FindBy(xpath = "//a[@title='Women']")
+    WebElement womenSection;
+
+    @FindBy(css = "li[class='sfHover'] a[title='T-shirts']")
+    WebElement womenTshirts;
+
+    @FindBy(css = "li[class='sfHover'] a[title='Summer Dresses']")
+    WebElement summerDresses;
+
+    public boolean verifySignInLink() {
+        return signInLink.isDisplayed();
     }
 
-    By womenSection = By.xpath("//a[@title='Women']");
-
-    public WebElement getWomenSection() {
-        return driver.findElement(womenSection);
+    public void userClicksOnSignInLink() {
+        signInLink.click();
     }
 
-    By womenTshirts = By.cssSelector("li[class='sfHover'] a[title='T-shirts']");
-
-    public WebElement getWomenTshirts() {
-        return driver.findElement(womenTshirts);
+    public void moveToWomenSection() {
+        Actions action = new Actions(driver);
+        action.moveToElement(womenSection).perform();
     }
 
-    By summerDresses = By.cssSelector("li[class='sfHover'] a[title='Summer Dresses']");
-
-    public WebElement getSummerDresses(){
-        return driver.findElement(summerDresses);
+    public void moveToWomenTshirts() {
+        Actions action = new Actions(driver);
+        action.moveToElement(womenTshirts).perform();
+        action.click().build().perform();
     }
+
+    public void moveSummerDresses() {
+        Actions action = new Actions(driver);
+        action.moveToElement(summerDresses).perform();
+        action.click().build().perform();
+    }
+
 
 }

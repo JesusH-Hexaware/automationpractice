@@ -1,8 +1,9 @@
 package pageObject;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class loginPage {
 
@@ -10,43 +11,61 @@ public class loginPage {
 
     public loginPage(WebDriver driver) {
         this.driver = driver;
-
+        PageFactory.initElements(driver, this);
     }
 
-    By createAccountBtn = By.xpath("//button[@id='SubmitCreate']");
+    @FindBy(xpath = "//button[@id='SubmitCreate']")
+    WebElement CreateAccountBtn;
 
-    public WebElement getCreateAccountBtm() {
-        return driver.findElement(createAccountBtn);
+    @FindBy(xpath = "//input[@id='email_create']")
+    WebElement EmailCreate;
+
+    @FindBy(xpath = "//li[normalize-space()='Invalid email address.']")
+    WebElement createAccountError;
+
+    @FindBy(id = "email")
+    WebElement loginEmail;
+
+    @FindBy(id = "passwd")
+    WebElement password;
+
+    @FindBy(id = "SubmitLogin")
+    WebElement signInButton;
+
+    public boolean verifyCreateAccountBtn(){
+        return CreateAccountBtn.isDisplayed();
     }
 
-    By emailCreate = By.xpath("//input[@id='email_create']");
-
-    public WebElement getEmailCreate() {
-        return driver.findElement(emailCreate);
+    public void userClicksOnCreateAccountBtn(){
+        CreateAccountBtn.click();
     }
 
-    By createAccountError = By.xpath("//li[normalize-space()='Invalid email address.']");
-
-    public WebElement getCreateAccountError() {
-        return driver.findElement(createAccountError);
+    public boolean verifyEmailCreateField() {
+        return EmailCreate.isDisplayed();
     }
 
-    By email = By.id("email");
-
-    public WebElement getUserEmail() {
-        return driver.findElement(email);
+    public void userTypesAnEmail(String typesAnEmail){
+        EmailCreate.sendKeys(typesAnEmail);
     }
 
-    By password = By.id("passwd");
-
-    public WebElement getUserPassword(){
-        return driver.findElement(password);
+    public boolean createAccountErrorIsDisplayed() {
+        return createAccountError.isDisplayed();
     }
 
-    By signInButton = By.id("SubmitLogin");
+    public String createAccountErrorMsg(){
+        return createAccountError.getText();
+    }
 
-    public WebElement getSignInButton(){
-        return driver.findElement(signInButton);
+    public  void userTypesLoginEmail(String typesLoginEmail) {
+        loginEmail.sendKeys(typesLoginEmail);
+    }
+
+    public void userTypesLoginPassword(String typesLoginPassword){
+        password.sendKeys(typesLoginPassword);
+    }
+
+    public void userClicksSignInButton(){
+        signInButton.click();
     }
 
 }

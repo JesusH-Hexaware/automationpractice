@@ -1,36 +1,48 @@
 package pageObject;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class myAccountPage {
     public WebDriver driver;
 
-    public myAccountPage(WebDriver driver){
+    public myAccountPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
-    By myAccount = By.xpath("//p[@class='info-account']");
-    public WebElement getMyAccount(){
-        return driver.findElement(myAccount);
+    @FindBy(xpath = "//p[@class='info-account']")
+    WebElement infoAccount;
+
+    @FindBy(xpath = "//a[@class='account']")
+    WebElement accountName;
+
+    public boolean userAccount() {
+        return infoAccount.isDisplayed();
     }
 
-    By userAccountName = By.xpath("//a[@class='account']");
-    public WebElement getUserAccountName(){
-        return driver.findElement(userAccountName);
+    public String userAccountName() {
+        return accountName.getText();
     }
 
-    By orderHistory = By.xpath("//i[@class='icon-list-ol']");
+    @FindBy(xpath = "//i[@class='icon-list-ol']")
+    WebElement orderHistory;
 
-    public WebElement getOrderHistory(){
-        return driver.findElement(orderHistory);
+    @FindBy(xpath = "//table[@id='order-list']//tr[@class='first_item ']//td[@class='history_link bold footable-first-column']")
+    WebElement lastOrder;
+
+    public void userClicksOnTheirAccount() {
+        accountName.click();
     }
 
-    By lastOrder = By.xpath("//table[@id='order-list']//tr[@class='first_item ']//td[@class='history_link bold footable-first-column']");
+    public void userClicksOnOrderHistory() {
+        orderHistory.click();
+    }
 
-    public WebElement getLastOrder(){
-        return driver.findElement(lastOrder);
+    public String userGetsLastOrder() {
+        return lastOrder.getText();
     }
 
 }

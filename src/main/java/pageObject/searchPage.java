@@ -1,23 +1,29 @@
 package pageObject;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class searchPage {
     public WebDriver driver;
 
-    public searchPage(WebDriver driver){
+    public searchPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
-    By searchResult = By.xpath("//span[@class='lighter']");
-    public WebElement getSearchResult(){
-        return driver.findElement(searchResult);
+    @FindBy(xpath = "//span[@class='lighter']")
+    WebElement searchResult;
+
+    @FindBy(css = "div[class='right-block'] span[class='price product-price']")
+    WebElement priceResult;
+
+    public String searchResults(){
+        return searchResult.getText();
     }
 
-    By priceResult = By.cssSelector("div[class='right-block'] span[class='price product-price']");
-    public WebElement getPriceResult(){
-        return driver.findElement(priceResult);
+    public String price(){
+        return priceResult.getText();
     }
 }
