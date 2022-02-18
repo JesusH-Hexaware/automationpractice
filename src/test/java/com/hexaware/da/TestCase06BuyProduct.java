@@ -15,7 +15,7 @@ import java.io.IOException;
 
 import static org.testng.Assert.assertEquals;
 
-public class test_06_buyProduct extends base {
+public class TestCase06BuyProduct extends base {
     public WebDriver driver;
     public String sheetName = "TC06";
     public static Logger log = LogManager.getLogger(base.class.getName());

@@ -8,19 +8,18 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pageObject.landingPage;
-import pageObject.summerDressesPage;
+import pageObject.searchPage;
+import pageObject.tshirtsPage;
 import resources.base;
 import resources.xlsxUtil;
 
 import java.io.IOException;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
-public class test_07_wishList extends base {
-
+public class TestCase05SearchProduct extends base{
     public WebDriver driver;
-    public String sheetName = "TC07";
+    public String sheetName = "TC05";
     public static Logger log = LogManager.getLogger(base.class.getName());
 
     @BeforeTest
@@ -29,32 +28,37 @@ public class test_07_wishList extends base {
         log.info("Driver is initialized");
     }
 
-    @Test(dataProvider = "TC07")
-    public void wishList(String baseUrl,
-                         String errorMsgTxt,
-                         String dressPosition) {
+    @Test(dataProvider = "TC05")
+    public void mouseOver(String baseUrl){
 
         landingPage home = new landingPage(driver);
-        summerDressesPage dressesPage = new summerDressesPage(driver);
+        tshirtsPage tshirts = new tshirtsPage(driver);
+        searchPage search = new searchPage(driver);
 
         driver.get(baseUrl);
-        log.info("1. Open link " + baseUrl);
+        log.info("1. Open this url " + baseUrl);
         home.moveToWomenSection();
         log.info("2. Move your cursor over Women's link");
-        home.moveSummerDresses();
-        log.info("3. Click on sub menu 'Summer Dresses'");
-        dressesPage.userSelectsDress(dressPosition);
-        log.info("4. Mouse hover on the second product displayed");
-        dressesPage.userClicksAddToWishlist(dressPosition);
-        log.info("5. 'Add to Wishlist' will appear on the bottom of that product, click on it.");
-        assertTrue(dressesPage.userGetsError());
-        log.info("Error Msg " + dressesPage.userGetsErrorMsg());
-        assertEquals(dressesPage.userGetsErrorMsg(), errorMsgTxt);
-        log.info("6. Verify that error message is displayed 'You must be logged in to manage your wish list.'");
+        home.moveToWomenTshirts();
+        log.info("3. Click on sub menu 'T-shirts'");
+        String productName = tshirts.productName();
+        String price = tshirts.price();
+        log.info("4. Get Name/Text of the first product displayed on the page");
+        tshirts.userTypesProductToSearch(productName);
+        tshirts.userClicksSearchBtn();
+        log.info("5. Now enter the same product name in the search bar present on top of page and click search button");
+        String searchedProduct = search.searchResults();
+        String searchedPrice = search.price();
+        StringBuilder sb = new StringBuilder("\"");
+        productName = (sb + productName + sb);
+        assertEquals(productName, searchedProduct);
+        assertEquals(price, searchedPrice);
+        log.info("6. Validate that same product is displayed on searched page with same details which were displayed on\n" +
+                "T-Shirt's page");
 
     }
 
-    @DataProvider(name = "TC07")
+    @DataProvider(name = "TC05")
     public Object[][] getData() throws IOException{
         String path = prop.getProperty("excelPath");
         xlsxUtil xlsx = new xlsxUtil(path);

@@ -8,18 +8,19 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pageObject.landingPage;
-import pageObject.searchPage;
-import pageObject.tshirtsPage;
+import pageObject.summerDressesPage;
 import resources.base;
 import resources.xlsxUtil;
 
 import java.io.IOException;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
-public class test_05_searchProduct extends base{
+public class TestCase07WishList extends base {
+
     public WebDriver driver;
-    public String sheetName = "TC05";
+    public String sheetName = "TC07";
     public static Logger log = LogManager.getLogger(base.class.getName());
 
     @BeforeTest
@@ -28,44 +29,40 @@ public class test_05_searchProduct extends base{
         log.info("Driver is initialized");
     }
 
-    @Test(dataProvider = "TC05")
-    public void mouseOver(String baseUrl){
+    @Test(dataProvider = "TC07")
+    public void wishList(String baseUrl,
+                         String errorMsgTxt,
+                         String dressPosition) {
 
         landingPage home = new landingPage(driver);
-        tshirtsPage tshirts = new tshirtsPage(driver);
-        searchPage search = new searchPage(driver);
+        summerDressesPage dressesPage = new summerDressesPage(driver);
 
         driver.get(baseUrl);
-        log.info("1. Open this url " + baseUrl);
+        log.info("1. Open link " + baseUrl);
         home.moveToWomenSection();
         log.info("2. Move your cursor over Women's link");
-        home.moveToWomenTshirts();
-        log.info("3. Click on sub menu 'T-shirts'");
-        String productName = tshirts.productName();
-        String price = tshirts.price();
-        log.info("4. Get Name/Text of the first product displayed on the page");
-        tshirts.userTypesProductToSearch(productName);
-        tshirts.userClicksSearchBtn();
-        log.info("5. Now enter the same product name in the search bar present on top of page and click search button");
-        String searchedProduct = search.searchResults();
-        String searchedPrice = search.price();
-        StringBuilder sb = new StringBuilder("\"");
-        productName = (sb + productName + sb);
-        assertEquals(productName, searchedProduct);
-        assertEquals(price, searchedPrice);
-        log.info("6. Validate that same product is displayed on searched page with same details which were displayed on\n" +
-                "T-Shirt's page");
+        home.moveSummerDresses();
+        log.info("3. Click on sub menu 'Summer Dresses'");
+        dressesPage.userSelectsDress(dressPosition);
+        log.info("4. Mouse hover on the second product displayed");
+        dressesPage.userClicksAddToWishlist(dressPosition);
+        log.info("5. 'Add to Wishlist' will appear on the bottom of that product, click on it.");
+        assertTrue(dressesPage.userGetsError());
+        log.info("Error Msg " + dressesPage.userGetsErrorMsg());
+        assertEquals(dressesPage.userGetsErrorMsg(), errorMsgTxt);
+        log.info("6. Verify that error message is displayed 'You must be logged in to manage your wish list.'");
 
     }
 
-    @DataProvider(name = "TC05")
+    @DataProvider(name = "TC07")
     public Object[][] getData() throws IOException{
         String path = prop.getProperty("excelPath");
+
         xlsxUtil xlsx = new xlsxUtil(path);
         int totalRows = xlsx.getRowCount(sheetName);
         int totalColumns = xlsx.getCellCount(sheetName, 1);
-        String data[][] = new String[totalRows][totalColumns];
 
+        String[][] data = new String[totalRows][totalColumns];
         for (int i = 1; i <= totalRows; i++){
             for (int j = 0; j < totalColumns; j++){
                 data[i-1][j] = xlsx.getCellData(sheetName, i , j);

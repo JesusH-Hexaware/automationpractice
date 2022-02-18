@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite" parallel="tests">
-<!--    <test name="test_01_registerUser">-->
-<!--        <classes>-->
-<!--            <class name="com.hexaware.da.test_01_registerUser"></class>-->
-<!--        </classes>-->
-<!--    </test>-->
-    <test name="test_02_invalidEmail">
+    <test name="TestCase 01 RegisterUser">
         <classes>
-            <class name="com.hexaware.da.test_02_invalidEmail"></class>
+            <class name="com.hexaware.da.TestCase01RegisterUser"/>
         </classes>
     </test>
-<!--    <test name="test_03_errorMessageForMandatoryFields">-->
-<!--        <classes>-->
-<!--            <class name="com.hexaware.da.test_03_errorMessageForMandatoryFields"></class>-->
-<!--        </classes>-->
-<!--    </test>-->
-<!--    <test name="test_04_errorMessageForIncorrectValues">-->
-<!--        <classes>-->
-<!--            <class name="com.hexaware.da.test_04_errorMessageForIncorrectValues"></class>-->
-<!--        </classes>-->
-<!--    </test>-->
-<!--    <test name="test_05_searchProduct">-->
-<!--        <classes>-->
-<!--            <class name="com.hexaware.da.test_05_searchProduct"></class>-->
-<!--        </classes>-->
-<!--    </test>-->
-<!--    <test name="test_06_buyProduct">-->
-<!--        <classes>-->
-<!--            <class name="com.hexaware.da.test_06_buyProduct"></class>-->
-<!--        </classes>-->
-<!--    </test>-->
-<!--    <test name="test_07_wishList">-->
-<!--        <classes>-->
-<!--            <class name="com.hexaware.da.test_07_wishList"></class>-->
-<!--        </classes>-->
-<!--    </test>-->
-<!--    <test name="test_08_verifyTotalPrice">-->
-<!--        <classes>-->
-<!--            <class name="com.hexaware.da.test_08_verifyTotalPrice"></class>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <test name="TestCase 02 InvalidEmail">
+        <classes>
+            <class name="com.hexaware.da.TestCase02InvalidEmail"/>
+        </classes>
+    </test>
+    <test name="TestCase 03 ErrorMessageForMandatoryFields">
+        <classes>
+            <class name="com.hexaware.da.TestCase03ErrorMessageForMandatoryFields"/>
+        </classes>
+    </test>
+    <test name="TestCase 04 ErrorMessageForIncorrectValues">
+        <classes>
+            <class name="com.hexaware.da.TestCase04ErrorMessageForIncorrectValues"/>
+        </classes>
+    </test>
+    <test name="TestCase 05 SearchProduct">
+        <classes>
+            <class name="com.hexaware.da.TestCase05SearchProduct"/>
+        </classes>
+    </test>
+    <test name="TestCase 06 BuyProduct">
+        <classes>
+            <class name="com.hexaware.da.TestCase06BuyProduct"/>
+        </classes>
+    </test>
+    <test name="TestCase 07 WishList">
+        <classes>
+            <class name="com.hexaware.da.TestCase07WishList"/>
+        </classes>
+    </test>
+    <test name="TestCase 08 VerifyTotalPrice">
+        <classes>
+            <class name="com.hexaware.da.TestCase08VerifyTotalPrice"/>
+        </classes>
+    </test>
 </suite>

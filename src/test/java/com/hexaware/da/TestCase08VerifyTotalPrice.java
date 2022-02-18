@@ -19,7 +19,7 @@ import java.io.IOException;
 
 import static org.testng.Assert.assertEquals;
 
-public class test_08_verifyTotalPrice extends base {
+public class TestCase08VerifyTotalPrice extends base {
 
     public WebDriver driver;
     public String sheetName = "TC08";

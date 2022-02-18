@@ -17,7 +17,7 @@ import java.io.IOException;
 
 import static org.testng.Assert.assertTrue;
 
-public class test_02_invalidEmail extends base {
+public class TestCase02InvalidEmail extends base {
     public WebDriver driver;
     public String sheetName = "TC02";
     public static Logger log = LogManager.getLogger(base.class.getName());
@@ -57,7 +57,7 @@ public class test_02_invalidEmail extends base {
         xlsxUtil xlsx = new xlsxUtil(path);
         int totalRows = xlsx.getRowCount(sheetName);
         int totalColumns = xlsx.getCellCount(sheetName, 1);
-        String data[][] = new String[totalRows][totalColumns];
+        String[][] data = new String[totalRows][totalColumns];
 
         for (int i = 1; i <= totalRows; i++) {
             for (int j = 0; j < totalColumns; j++) {
