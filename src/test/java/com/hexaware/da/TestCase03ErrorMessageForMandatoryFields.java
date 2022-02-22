@@ -10,18 +10,18 @@ import org.testng.annotations.Test;
 import pageObject.createAccountPage;
 import pageObject.landingPage;
 import pageObject.loginPage;
-import resources.base;
-import resources.xlsxUtil;
+import resources.Base;
+import resources.ExcelUtil;
 
 import java.io.IOException;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class TestCase03ErrorMessageForMandatoryFields extends base{
+public class TestCase03ErrorMessageForMandatoryFields extends Base {
     public WebDriver driver;
     public String sheetName = "TC03";
-    public static Logger log = LogManager.getLogger(base.class.getName());
+    public static Logger log = LogManager.getLogger(Base.class.getName());
 
     @BeforeTest
     public void setupBrowser() throws IOException {
@@ -30,7 +30,7 @@ public class TestCase03ErrorMessageForMandatoryFields extends base{
     }
 
     @Test(dataProvider = "tc03")
-    public void registerUser(String baseUrl,
+    public void errorMessageForMandatoryFields(String baseUrl,
                              String email) {
 
         landingPage homePage = new landingPage(driver);
@@ -66,7 +66,7 @@ public class TestCase03ErrorMessageForMandatoryFields extends base{
     @DataProvider(name = "tc03")
     public Object[][] getData() throws IOException{
         String path = prop.getProperty("excelPath");
-        xlsxUtil xlsx = new xlsxUtil(path);
+        ExcelUtil xlsx = new ExcelUtil(path);
         int totalRows = xlsx.getRowCount(sheetName);
         int totalColumns = xlsx.getCellCount(sheetName, 1);
         String[][] data = new String[totalRows][totalColumns];

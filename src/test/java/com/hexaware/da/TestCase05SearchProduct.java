@@ -10,17 +10,17 @@ import org.testng.annotations.Test;
 import pageObject.landingPage;
 import pageObject.searchPage;
 import pageObject.tshirtsPage;
-import resources.base;
-import resources.xlsxUtil;
+import resources.Base;
+import resources.ExcelUtil;
 
 import java.io.IOException;
 
 import static org.testng.Assert.assertEquals;
 
-public class TestCase05SearchProduct extends base{
+public class TestCase05SearchProduct extends Base {
     public WebDriver driver;
     public String sheetName = "TC05";
-    public static Logger log = LogManager.getLogger(base.class.getName());
+    public static Logger log = LogManager.getLogger(Base.class.getName());
 
     @BeforeTest
     public void setup() throws IOException {
@@ -29,7 +29,7 @@ public class TestCase05SearchProduct extends base{
     }
 
     @Test(dataProvider = "TC05")
-    public void mouseOver(String baseUrl){
+    public void searchProduct(String baseUrl){
 
         landingPage home = new landingPage(driver);
         tshirtsPage tshirts = new tshirtsPage(driver);
@@ -61,7 +61,7 @@ public class TestCase05SearchProduct extends base{
     @DataProvider(name = "TC05")
     public Object[][] getData() throws IOException{
         String path = prop.getProperty("excelPath");
-        xlsxUtil xlsx = new xlsxUtil(path);
+        ExcelUtil xlsx = new ExcelUtil(path);
         int totalRows = xlsx.getRowCount(sheetName);
         int totalColumns = xlsx.getCellCount(sheetName, 1);
         String[][] data = new String[totalRows][totalColumns];

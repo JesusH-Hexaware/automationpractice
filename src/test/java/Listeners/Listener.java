@@ -1,43 +1,56 @@
 package Listeners;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import resources.base;
+import resources.Base;
+import resources.ExtentReporterNG;
 
 import java.io.IOException;
 
-public class Listener extends base implements ITestListener {
-    public static Logger log = LogManager.getLogger(base.class.getName());
+public class Listener extends Base implements ITestListener {
+    public static Logger log = LogManager.getLogger(Base.class.getName());
+
+    ExtentTest test;
+    ExtentReports extent= ExtentReporterNG.getReportObject();
+    ThreadLocal<ExtentTest> extentTest =new ThreadLocal<ExtentTest>();
 
     @Override
     public void onTestStart(ITestResult result) {
         log.info("Start test " + result.getName());
+        test= extent.createTest(result.getMethod().getMethodName());
+        extentTest.set(test);
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
         log.info("Passed test " + result.getName());
+        extentTest.get().log(Status.PASS, "Test Passed");
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
         log.info("Failed test " + result.getName() + " screenshot captured!");
-
+        extentTest.get().fail(result.getThrowable());
         WebDriver driver = null;
 
         String testMethodName = result.getMethod().getMethodName();
 
         try {
             driver = (WebDriver) result.getTestClass().getRealClass().getDeclaredField("driver").get(result.getInstance());
-        } catch (IllegalAccessException | NoSuchFieldException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            getScreenShotPath(testMethodName, driver);
+            extentTest.get().addScreenCaptureFromPath(getScreenShotPath(testMethodName,driver), result.getMethod().getMethodName());
+            extentTest.get().addScreenCaptureFromBase64String(getScreenShotPath(testMethodName, driver), result.getMethod().getMethodName());
+            //getScreenShotPath(testMethodName, driver);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -66,5 +79,6 @@ public class Listener extends base implements ITestListener {
     @Override
     public void onFinish(ITestContext context) {
         log.info("Finish test execution " + context.getName());
+        extent.flush();
     }
 }

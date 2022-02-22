@@ -9,19 +9,19 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pageObject.landingPage;
 import pageObject.summerDressesPage;
-import resources.base;
-import resources.xlsxUtil;
+import resources.Base;
+import resources.ExcelUtil;
 
 import java.io.IOException;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class TestCase07WishList extends base {
+public class TestCase07WishList extends Base {
 
     public WebDriver driver;
     public String sheetName = "TC07";
-    public static Logger log = LogManager.getLogger(base.class.getName());
+    public static Logger log = LogManager.getLogger(Base.class.getName());
 
     @BeforeTest
     public void setup() throws IOException {
@@ -58,7 +58,7 @@ public class TestCase07WishList extends base {
     public Object[][] getData() throws IOException{
         String path = prop.getProperty("excelPath");
 
-        xlsxUtil xlsx = new xlsxUtil(path);
+        ExcelUtil xlsx = new ExcelUtil(path);
         int totalRows = xlsx.getRowCount(sheetName);
         int totalColumns = xlsx.getCellCount(sheetName, 1);
 

@@ -11,7 +11,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class xlsxUtil {
+public class ExcelUtil {
     public FileInputStream  fileInput;
     public FileOutputStream fileOutput;
     public XSSFWorkbook workbook;
@@ -20,7 +20,7 @@ public class xlsxUtil {
     public XSSFCell cell;
     String  path;
 
-    public xlsxUtil(String  path){
+    public ExcelUtil(String  path){
         this.path = path;
 
     }

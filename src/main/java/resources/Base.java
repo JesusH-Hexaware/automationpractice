@@ -17,12 +17,12 @@ import java.time.Duration;
 import java.util.Date;
 import java.util.Properties;
 
-public class base {
+public class Base {
     public WebDriver driver;
     public Properties prop;
 
     public WebDriver initializeDriver() throws IOException {
-        Logger log = LogManager.getLogger(base.class.getName());
+        Logger log = LogManager.getLogger(Base.class.getName());
 
         //chrome
         //firefox
@@ -46,13 +46,15 @@ public class base {
         return driver;
     }
 
-    public void getScreenShotPath(String testCaseName, WebDriver driver) throws IOException {
+    public String getScreenShotPath(String testCaseName, WebDriver driver) throws IOException {
         TakesScreenshot ts = (TakesScreenshot) driver;
         File source = ts.getScreenshotAs(OutputType.FILE);
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
-        String destinationFile = System.getProperty("user.dir") + "/screenshots/" + (formatter.format(date)) + " - " + testCaseName + ".png";
+        String destinationFile = System.getProperty("user.dir") + "/reports/" + (formatter.format(date)) + " - " + testCaseName + ".png";
+
         FileUtils.copyFile(source, new File(destinationFile));
+        return destinationFile;
     }
 }

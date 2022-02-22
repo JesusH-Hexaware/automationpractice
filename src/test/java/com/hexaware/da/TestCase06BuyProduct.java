@@ -8,17 +8,17 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pageObject.*;
-import resources.base;
-import resources.xlsxUtil;
+import resources.Base;
+import resources.ExcelUtil;
 
 import java.io.IOException;
 
 import static org.testng.Assert.assertEquals;
 
-public class TestCase06BuyProduct extends base {
+public class TestCase06BuyProduct extends Base {
     public WebDriver driver;
     public String sheetName = "TC06";
-    public static Logger log = LogManager.getLogger(base.class.getName());
+    public static Logger log = LogManager.getLogger(Base.class.getName());
 
     @BeforeTest
     public void setup() throws IOException {
@@ -90,7 +90,7 @@ public class TestCase06BuyProduct extends base {
     @DataProvider(name = "TC06")
     public Object[][] getData() throws IOException {
         String path = prop.getProperty("excelPath");
-        xlsxUtil xlsx = new xlsxUtil(path);
+        ExcelUtil xlsx = new ExcelUtil(path);
         int totalRows = xlsx.getRowCount(sheetName);
         int totalColumns = xlsx.getCellCount(sheetName, 1);
         String[][] data = new String[totalRows][totalColumns];

@@ -3,6 +3,7 @@ target/
 .vscode/
 src/main/driver
 screenshots/
+reports/
 *.xlsx#
 *.log
 *.iml
