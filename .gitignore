@@ -2,6 +2,7 @@ target/
 .idea/
 .vscode/
 src/main/driver
+screenshots/
 *.xlsx#
 *.log
 *.iml

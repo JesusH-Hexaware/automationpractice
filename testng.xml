@@ -1,42 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite" parallel="tests">
-    <test name="TestCase 01 RegisterUser">
+    <listeners>
+        <listener class-name="Listeners.Listener"/>
+    </listeners>
+    <test name="TestCase 01 RegisterUser" enabled="true">
         <classes>
             <class name="com.hexaware.da.TestCase01RegisterUser"/>
         </classes>
     </test>
-    <test name="TestCase 02 InvalidEmail">
+    <test name="TestCase 02 InvalidEmail" enabled="false">
         <classes>
             <class name="com.hexaware.da.TestCase02InvalidEmail"/>
         </classes>
     </test>
-    <test name="TestCase 03 ErrorMessageForMandatoryFields">
+    <test name="TestCase 03 ErrorMessageForMandatoryFields" enabled="false">
         <classes>
             <class name="com.hexaware.da.TestCase03ErrorMessageForMandatoryFields"/>
         </classes>
     </test>
-    <test name="TestCase 04 ErrorMessageForIncorrectValues">
+    <test name="TestCase 04 ErrorMessageForIncorrectValues" enabled="false">
         <classes>
             <class name="com.hexaware.da.TestCase04ErrorMessageForIncorrectValues"/>
         </classes>
     </test>
-    <test name="TestCase 05 SearchProduct">
+    <test name="TestCase 05 SearchProduct" enabled="false">
         <classes>
             <class name="com.hexaware.da.TestCase05SearchProduct"/>
         </classes>
     </test>
-    <test name="TestCase 06 BuyProduct">
+    <test name="TestCase 06 BuyProduct" enabled="false">
         <classes>
             <class name="com.hexaware.da.TestCase06BuyProduct"/>
         </classes>
     </test>
-    <test name="TestCase 07 WishList">
+    <test name="TestCase 07 WishList" enabled="false">
         <classes>
             <class name="com.hexaware.da.TestCase07WishList"/>
         </classes>
     </test>
-    <test name="TestCase 08 VerifyTotalPrice">
+    <test name="TestCase 08 VerifyTotalPrice" enabled="false">
         <classes>
             <class name="com.hexaware.da.TestCase08VerifyTotalPrice"/>
         </classes>
