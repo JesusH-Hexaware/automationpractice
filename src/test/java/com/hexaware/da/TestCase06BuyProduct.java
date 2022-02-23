@@ -36,25 +36,18 @@ public class TestCase06BuyProduct extends Base {
                            String dressPosition) {
 
         landingPage home = new landingPage(driver);
-        loginPage loginPage = new loginPage(driver);
-        summerDressesPage dressesPage = new summerDressesPage(driver);
-        shoppingCartSumary cartSummary = new shoppingCartSumary(driver);
-        shoppingAddress cartAddress = new shoppingAddress(driver);
-        shoppingShipping cartShipping = new shoppingShipping(driver);
-        shoppingPayment cartPayment = new shoppingPayment(driver);
-        shoppingOrderSummary cartConfirmOrder = new shoppingOrderSummary(driver);
         myAccountPage myAccount = new myAccountPage(driver);
 
         driver.get(baseUrl);
         log.info("1. Open this url " + baseUrl);
-        home.userClicksOnSignInLink();
+        loginPage loginPage = home.userClicksOnSignInLink();
         loginPage.userTypesLoginEmail(userEmail);
         loginPage.userTypesLoginPassword(userPassword);
         loginPage.userClicksSignInButton();
         log.info("2. Login to the website.");
         home.moveToWomenSection();
         log.info("3. Move your cursor over Women's link");
-        home.moveSummerDresses();
+        summerDressesPage dressesPage = home.moveSummerDresses();
         log.info("4. Click on sub menu 'Summer Dresses'");
         dressesPage.userSelectsDress(dressPosition);
         log.info("5. Mouse hover on the second product displayed");
@@ -68,13 +61,13 @@ public class TestCase06BuyProduct extends Base {
         log.info("9. Select color");
         dressesPage.userAddToCart();
         log.info("10. Click 'Add to Cart' button");
-        dressesPage.userClicksCheckOutBtn();
+        shoppingCartSumary cartSummary = dressesPage.userClicksCheckOutBtn();
         log.info("11. Click 'Proceed to checkout' button");
-        cartSummary.userClicksProceedToCheckout();
-        cartAddress.userClicksProceedToCheckout();
+        shoppingAddress cartAddress = cartSummary.userClicksProceedToCheckout();
+        shoppingShipping cartShipping = cartAddress.userClicksProceedToCheckout();
         cartShipping.userAcceptsTermsAndConditions();
-        cartShipping.userClicksProceedToCheckout();
-        cartPayment.userSelectsPayByBankWire();
+        shoppingPayment cartPayment = cartShipping.userClicksProceedToCheckout();
+        shoppingOrderSummary cartConfirmOrder = cartPayment.userSelectsPayByBankWire();
         cartConfirmOrder.userClicksIConfirmMyOrder();
         log.info("12. Complete the buy order process till payment");
         log.info("Order Reference in the summary = " + cartConfirmOrder.orderReference());

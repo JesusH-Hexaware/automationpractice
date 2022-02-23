@@ -19,7 +19,7 @@ public class Listener extends Base implements ITestListener {
 
     ExtentTest test;
     ExtentReports extent= ExtentReporterNG.getReportObject();
-    ThreadLocal<ExtentTest> extentTest =new ThreadLocal<ExtentTest>();
+    ThreadLocal<ExtentTest> extentTest =new ThreadLocal<>();
 
     @Override
     public void onTestStart(ITestResult result) {
@@ -36,7 +36,7 @@ public class Listener extends Base implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        log.info("Failed test " + result.getName() + " screenshot captured!");
+        log.error("Failed test " + result.getName() + " screenshot captured!");
         extentTest.get().fail(result.getThrowable());
         WebDriver driver = null;
 

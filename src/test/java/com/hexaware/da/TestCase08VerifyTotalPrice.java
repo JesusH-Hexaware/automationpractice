@@ -41,20 +41,17 @@ public class TestCase08VerifyTotalPrice extends Base {
                                  String incressQuantity) {
 
         landingPage home = new landingPage(driver);
-        loginPage loginPage = new loginPage(driver);
-        summerDressesPage dressesPage = new summerDressesPage(driver);
-        shoppingCartSumary cartSumary = new shoppingCartSumary(driver);
 
         driver.get(baseUrl);
         log.info("1. Open link" + baseUrl);
-        home.userClicksOnSignInLink();
+        loginPage loginPage = home.userClicksOnSignInLink();
         loginPage.userTypesLoginEmail(userEmail);
         loginPage.userTypesLoginPassword(userPassword);
         loginPage.userClicksSignInButton();
         log.info("2. Login to the website.");
         home.moveToWomenSection();
         log.info("3. Move your cursor over Women's link");
-        home.moveSummerDresses();
+        summerDressesPage dressesPage = home.moveSummerDresses();
         log.info("4. Click on sub menu 'Summer Dresses'");
         dressesPage.userSelectsDress(dressPosition);
         log.info("5. Mouse hover on the second product displayed");
@@ -70,7 +67,7 @@ public class TestCase08VerifyTotalPrice extends Base {
         log.info("Unit price = " + unitPrice);
         dressesPage.userAddToCart();
         log.info("10. Click 'Add to Cart' button");
-        dressesPage.userClicksCheckOutBtn();
+        shoppingCartSumary cartSumary = dressesPage.userClicksCheckOutBtn();
         log.info("11. Click 'Proceed to checkout' button");
         cartSumary.userChangeQuantity(incressQuantity);
         log.info("12. Change the quantity to 2.");

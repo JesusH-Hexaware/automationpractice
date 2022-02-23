@@ -7,6 +7,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.io.File;
@@ -33,12 +34,15 @@ public class Base {
 
         if (browserName.equals("chrome")) {
             System.setProperty("webdriver.chrome.driver", "src/main/driver/chromedriver");
-            log.info("Browser is initialized = " + browserName);
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("headless");
             driver = new ChromeDriver();
+            log.info("Browser is initialized = " + browserName);
+
         } else if (browserName.equals("firefox")) {
             System.setProperty("webdriver.gecko.driver", "src/main/driver/geckodriver");
-            log.info("Browser is initialized = " + browserName);
             driver = new FirefoxDriver();
+            log.info("Browser is initialized = " + browserName);
         }
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));

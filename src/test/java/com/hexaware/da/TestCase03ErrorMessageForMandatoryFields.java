@@ -34,17 +34,15 @@ public class TestCase03ErrorMessageForMandatoryFields extends Base {
                              String email) {
 
         landingPage homePage = new landingPage(driver);
-        loginPage login = new loginPage(driver);
-        createAccountPage createAccountForm = new createAccountPage(driver);
 
         //driver.get(prop.getProperty("url"));
         driver.get(baseUrl);
         log.info("1. Open this url" + baseUrl);
         assertTrue(homePage.verifySignInLink());
-        homePage.userClicksOnSignInLink();
+        loginPage login = homePage.userClicksOnSignInLink();
         log.info("2. Click on sign in link");
         login.userTypesAnEmail(email);
-        login.userClicksOnCreateAccountBtn();
+        createAccountPage createAccountForm = login.userClicksOnCreateAccountBtn();
         log.info("3. Enter email address and click Register button");
         createAccountForm.userCliksRegisterBtn();
         log.info("4. Leave the mandatory fields (marked with *) blank and click Register button");

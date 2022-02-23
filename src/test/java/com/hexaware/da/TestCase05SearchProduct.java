@@ -32,20 +32,18 @@ public class TestCase05SearchProduct extends Base {
     public void searchProduct(String baseUrl){
 
         landingPage home = new landingPage(driver);
-        tshirtsPage tshirts = new tshirtsPage(driver);
-        searchPage search = new searchPage(driver);
 
         driver.get(baseUrl);
         log.info("1. Open this url " + baseUrl);
         home.moveToWomenSection();
         log.info("2. Move your cursor over Women's link");
-        home.moveToWomenTshirts();
+        tshirtsPage tshirts = home.moveToWomenTshirts();
         log.info("3. Click on sub menu 'T-shirts'");
         String productName = tshirts.productName();
         String price = tshirts.price();
         log.info("4. Get Name/Text of the first product displayed on the page");
         tshirts.userTypesProductToSearch(productName);
-        tshirts.userClicksSearchBtn();
+        searchPage search = tshirts.userClicksSearchBtn();
         log.info("5. Now enter the same product name in the search bar present on top of page and click search button");
         String searchedProduct = search.searchResults();
         String searchedPrice = search.price();

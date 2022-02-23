@@ -16,8 +16,9 @@ public class shoppingAddress {
     @FindBy(css = "button[name='processAddress'] span")
     WebElement processAddress;
 
-    public void userClicksProceedToCheckout() {
+    public shoppingShipping userClicksProceedToCheckout() {
         processAddress.click();
+        return new shoppingShipping(driver);
     }
 
 }

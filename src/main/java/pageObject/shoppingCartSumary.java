@@ -32,8 +32,9 @@ public class shoppingCartSumary {
     @FindBy(xpath = "//td[@class='cart_total']")
     List<WebElement> productAmountTotals;
 
-    public void userClicksProceedToCheckout() {
+    public shoppingAddress userClicksProceedToCheckout() {
         summaryCheckout.click();
+        return new shoppingAddress(driver);
     }
 
     public void userChangeQuantity(String n) {

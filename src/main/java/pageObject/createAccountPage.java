@@ -126,8 +126,9 @@ public class createAccountPage {
         addressAliasField.sendKeys(alias);
     }
 
-    public void userCliksRegisterBtn() {
+    public myAccountPage userCliksRegisterBtn() {
         submitAccountBtn.click();
+        return new myAccountPage(driver);
     }
 
     public boolean errorAlert() {
@@ -138,7 +139,7 @@ public class createAccountPage {
         return errorAlertPhone.isDisplayed();
     }
 
-    public String errorPhoneMsg(){
+    public String errorPhoneMsg() {
         return errorAlertPhone.getText();
     }
 

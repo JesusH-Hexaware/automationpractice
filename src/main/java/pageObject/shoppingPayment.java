@@ -16,8 +16,9 @@ public class shoppingPayment {
     @FindBy(css = "a[title='Pay by bank wire']")
     WebElement payByBankWire;
 
-    public void userSelectsPayByBankWire(){
+    public shoppingOrderSummary userSelectsPayByBankWire() {
         payByBankWire.click();
+        return new shoppingOrderSummary(driver);
     }
 
 }

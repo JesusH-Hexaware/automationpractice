@@ -30,8 +30,9 @@ public class landingPage {
         return signInLink.isDisplayed();
     }
 
-    public void userClicksOnSignInLink() {
+    public loginPage userClicksOnSignInLink() {
         signInLink.click();
+        return new loginPage(driver);
     }
 
     public void moveToWomenSection() {
@@ -39,16 +40,18 @@ public class landingPage {
         action.moveToElement(womenSection).perform();
     }
 
-    public void moveToWomenTshirts() {
+    public tshirtsPage moveToWomenTshirts() {
         Actions action = new Actions(driver);
         action.moveToElement(womenTshirts).perform();
         action.click().build().perform();
+        return new tshirtsPage(driver);
     }
 
-    public void moveSummerDresses() {
+    public summerDressesPage moveSummerDresses() {
         Actions action = new Actions(driver);
         action.moveToElement(summerDresses).perform();
         action.click().build().perform();
+        return new summerDressesPage(driver);
     }
 
 

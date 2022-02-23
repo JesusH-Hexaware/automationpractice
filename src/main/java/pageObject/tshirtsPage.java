@@ -37,8 +37,9 @@ public class tshirtsPage {
         searchProduct.sendKeys(productName);
     }
 
-    public void userClicksSearchBtn() {
+    public searchPage userClicksSearchBtn() {
         searchButton.click();
+        return new searchPage(driver);
     }
 
 }

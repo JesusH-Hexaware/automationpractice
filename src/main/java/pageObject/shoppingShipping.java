@@ -23,8 +23,9 @@ public class shoppingShipping {
     @FindBy(css = "button[name='processCarrier'] span")
     WebElement shippingCheckout;
 
-    public void userClicksProceedToCheckout() {
+    public shoppingPayment userClicksProceedToCheckout() {
         shippingCheckout.click();
+        return new shoppingPayment(driver);
     }
 
 }

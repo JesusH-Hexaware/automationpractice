@@ -40,19 +40,17 @@ public class TestCase04ErrorMessageForIncorrectValues extends Base {
                                            String invalidEmail) {
 
         landingPage homePage = new landingPage(driver);
-        loginPage login = new loginPage(driver);
-        createAccountPage createAccount = new createAccountPage(driver);
 
         //driver.get(prop.getProperty("url"));
         driver.get(baseUrl);
         log.info("1. Open this url" + baseUrl);
         assertTrue(homePage.verifySignInLink());
-        homePage.userClicksOnSignInLink();
+        loginPage login = homePage.userClicksOnSignInLink();
         log.info("2. Click on sign in link");
         assertTrue(login.verifyEmailCreateField());
         login.userTypesAnEmail(email);
         assertTrue(login.verifyCreateAccountBtn());
-        login.userClicksOnCreateAccountBtn();
+        createAccountPage createAccount = login.userClicksOnCreateAccountBtn();
         log.info("3. Enter email address and click Register button");
         createAccount.userTypesFirstName(firstname);
         createAccount.userTypesLastName(lastname);

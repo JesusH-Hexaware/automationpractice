@@ -35,13 +35,12 @@ public class TestCase07WishList extends Base {
                          String dressPosition) {
 
         landingPage home = new landingPage(driver);
-        summerDressesPage dressesPage = new summerDressesPage(driver);
 
         driver.get(baseUrl);
         log.info("1. Open link " + baseUrl);
         home.moveToWomenSection();
         log.info("2. Move your cursor over Women's link");
-        home.moveSummerDresses();
+        summerDressesPage dressesPage = home.moveSummerDresses();
         log.info("3. Click on sub menu 'Summer Dresses'");
         dressesPage.userSelectsDress(dressPosition);
         log.info("4. Mouse hover on the second product displayed");
@@ -55,7 +54,7 @@ public class TestCase07WishList extends Base {
     }
 
     @DataProvider(name = "TC07")
-    public Object[][] getData() throws IOException{
+    public Object[][] getData() throws IOException {
         String path = prop.getProperty("excelPath");
 
         ExcelUtil xlsx = new ExcelUtil(path);
@@ -63,16 +62,16 @@ public class TestCase07WishList extends Base {
         int totalColumns = xlsx.getCellCount(sheetName, 1);
 
         String[][] data = new String[totalRows][totalColumns];
-        for (int i = 1; i <= totalRows; i++){
-            for (int j = 0; j < totalColumns; j++){
-                data[i-1][j] = xlsx.getCellData(sheetName, i , j);
+        for (int i = 1; i <= totalRows; i++) {
+            for (int j = 0; j < totalColumns; j++) {
+                data[i - 1][j] = xlsx.getCellData(sheetName, i, j);
             }
         }
         return data;
     }
 
     @AfterTest
-    public void tearDown(){
+    public void tearDown() {
         driver.close();
     }
 

@@ -36,9 +36,8 @@ public class TestCase02InvalidEmail extends Base {
         driver.get(baseUrl);
         log.info("1. Open this url " + baseUrl);
         assertTrue(homePage.verifySignInLink());
-        homePage.userClicksOnSignInLink();
+        loginPage AuthenticationPage = homePage.userClicksOnSignInLink();
         log.info("2. Click on sign in link");
-        loginPage AuthenticationPage = new loginPage(driver);
         assertTrue(AuthenticationPage.verifyEmailCreateField());
         AuthenticationPage.userTypesAnEmail(invalidEmail);
         assertTrue(AuthenticationPage.verifyCreateAccountBtn());

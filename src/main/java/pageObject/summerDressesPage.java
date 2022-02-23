@@ -85,8 +85,9 @@ public class summerDressesPage {
         add_to_cart.click();
     }
 
-    public void userClicksCheckOutBtn() {
+    public shoppingCartSumary userClicksCheckOutBtn() {
         checkOut.click();
+        return new shoppingCartSumary(driver);
     }
 
     public void userClicksAddToWishlist(String n) {

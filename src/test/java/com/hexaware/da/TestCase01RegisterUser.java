@@ -25,7 +25,7 @@ public class TestCase01RegisterUser extends Base {
     public static Logger log = LogManager.getLogger(Base.class.getName());
 
     @BeforeTest
-    public void setupBrowser() throws IOException{
+    public void setupBrowser() throws IOException {
         driver = initializeDriver();
         log.info("Driver is initialized");
     }
@@ -42,24 +42,21 @@ public class TestCase01RegisterUser extends Base {
                              String postalCode,
                              String mobilePhone,
                              String addressAlias
-                            ) {
+    ) {
 
         landingPage homePage = new landingPage(driver);
-        loginPage loginPage = new loginPage(driver);
-        createAccountPage createAccountForm = new createAccountPage(driver);
-        myAccountPage myAccount = new myAccountPage(driver);
 
         //driver.get(prop.getProperty("url"));
         driver.get(baseUrl);
         log.info("1. Open this url " + baseUrl);
         assertTrue(homePage.verifySignInLink());
-        homePage.userClicksOnSignInLink();
+        loginPage loginPage = homePage.userClicksOnSignInLink();
         log.info("2. Click on sign in link");
         assertTrue(loginPage.verifyEmailCreateField());
         loginPage.userTypesAnEmail(email);
         log.info("3. Enter your email address in 'Create and account' section");
         assertTrue(loginPage.verifyCreateAccountBtn());
-        loginPage.userClicksOnCreateAccountBtn();
+        createAccountPage createAccountForm = loginPage.userClicksOnCreateAccountBtn();
         log.info("4. Click on Create an Account button");
         createAccountForm.userTypesFirstName(firstname);
         createAccountForm.userTypesLastName(lastname);
@@ -71,7 +68,7 @@ public class TestCase01RegisterUser extends Base {
         createAccountForm.userTypesMobilephone(mobilePhone);
         createAccountForm.userTypesAddressAlias(addressAlias);
         log.info("5. Enter your Personal Information, Address and Contact info");
-        createAccountForm.userCliksRegisterBtn();
+        myAccountPage myAccount = createAccountForm.userCliksRegisterBtn();
         log.info("6. Click on Register button");
         String expectedText = (firstname + " " + lastname);
         assertEquals(expectedText, myAccount.userAccountName());
@@ -80,23 +77,23 @@ public class TestCase01RegisterUser extends Base {
     }
 
     @DataProvider(name = "tc01")
-    public Object[][] getData() throws IOException{
+    public Object[][] getData() throws IOException {
         String path = prop.getProperty("excelPath");
         ExcelUtil xlsx = new ExcelUtil(path);
         int totalRows = xlsx.getRowCount(sheetName);
         int totalColumns = xlsx.getCellCount(sheetName, 1);
         String[][] data = new String[totalRows][totalColumns];
 
-        for (int i = 1; i <= totalRows; i++){
-            for (int j = 0; j < totalColumns; j++){
-                data[i-1][j] = xlsx.getCellData(sheetName, i , j);
+        for (int i = 1; i <= totalRows; i++) {
+            for (int j = 0; j < totalColumns; j++) {
+                data[i - 1][j] = xlsx.getCellData(sheetName, i, j);
             }
         }
         return data;
     }
 
     @AfterTest
-    public void tearDown(){
+    public void tearDown() {
         driver.close();
     }
 

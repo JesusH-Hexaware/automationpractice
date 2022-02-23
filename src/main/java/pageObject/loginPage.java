@@ -36,8 +36,9 @@ public class loginPage {
         return CreateAccountBtn.isDisplayed();
     }
 
-    public void userClicksOnCreateAccountBtn(){
+    public createAccountPage userClicksOnCreateAccountBtn(){
         CreateAccountBtn.click();
+        return new createAccountPage(driver);
     }
 
     public boolean verifyEmailCreateField() {
