@@ -14,7 +14,7 @@ public class shoppingAddress {
     }
 
     @FindBy(css = "button[name='processAddress'] span")
-    WebElement processAddress;
+    private WebElement processAddress;
 
     public shoppingShipping userClicksProceedToCheckout() {
         processAddress.click();

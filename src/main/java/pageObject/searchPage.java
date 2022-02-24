@@ -14,10 +14,10 @@ public class searchPage {
     }
 
     @FindBy(xpath = "//span[@class='lighter']")
-    WebElement searchResult;
+    private WebElement searchResult;
 
     @FindBy(css = "div[class='right-block'] span[class='price product-price']")
-    WebElement priceResult;
+    private WebElement priceResult;
 
     public String searchResults(){
         return searchResult.getText();

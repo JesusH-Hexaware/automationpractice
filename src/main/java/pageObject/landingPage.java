@@ -15,16 +15,16 @@ public class landingPage {
     }
 
     @FindBy(xpath = "//a[@class='login']")
-    WebElement signInLink;
+    private WebElement signInLink;
 
     @FindBy(xpath = "//a[@title='Women']")
-    WebElement womenSection;
+    private WebElement womenSection;
 
     @FindBy(css = "li[class='sfHover'] a[title='T-shirts']")
-    WebElement womenTshirts;
+    private WebElement womenTshirts;
 
     @FindBy(css = "li[class='sfHover'] a[title='Summer Dresses']")
-    WebElement summerDresses;
+    private WebElement summerDresses;
 
     public boolean verifySignInLink() {
         return signInLink.isDisplayed();
@@ -53,6 +53,5 @@ public class landingPage {
         action.click().build().perform();
         return new summerDressesPage(driver);
     }
-
 
 }

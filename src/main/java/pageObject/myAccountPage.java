@@ -14,10 +14,16 @@ public class myAccountPage {
     }
 
     @FindBy(xpath = "//p[@class='info-account']")
-    WebElement infoAccount;
+    private WebElement infoAccount;
 
     @FindBy(xpath = "//a[@class='account']")
-    WebElement accountName;
+    private WebElement accountName;
+
+    @FindBy(xpath = "//i[@class='icon-list-ol']")
+    private WebElement orderHistory;
+
+    @FindBy(xpath = "//table[@id='order-list']//tr[@class='first_item ']//td[@class='history_link bold footable-first-column']")
+    private WebElement lastOrder;
 
     public boolean userAccount() {
         return infoAccount.isDisplayed();
@@ -26,12 +32,6 @@ public class myAccountPage {
     public String userAccountName() {
         return accountName.getText();
     }
-
-    @FindBy(xpath = "//i[@class='icon-list-ol']")
-    WebElement orderHistory;
-
-    @FindBy(xpath = "//table[@id='order-list']//tr[@class='first_item ']//td[@class='history_link bold footable-first-column']")
-    WebElement lastOrder;
 
     public void userClicksOnTheirAccount() {
         accountName.click();

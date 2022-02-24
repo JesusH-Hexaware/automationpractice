@@ -15,10 +15,10 @@ public class shoppingOrderSummary {
     }
 
     @FindBy(css = "button[class='button btn btn-default button-medium'] span")
-    WebElement confirmOrder;
+    private WebElement confirmOrder;
 
     @FindBy(xpath = "//div[@class='box']")
-    WebElement orderSummary;
+    private WebElement orderSummary;
 
     public void userClicksIConfirmMyOrder() {
         confirmOrder.click();

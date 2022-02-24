@@ -19,34 +19,34 @@ public class summerDressesPage {
     }
 
     @FindBy(xpath = "//div[@class='product-image-container']")
-    List<WebElement> dresses;
+    private List<WebElement> dresses;
 
     @FindBy(css = "a[title='View'] span")
-    List<WebElement> moreButton;
+    private List<WebElement> moreButton;
 
     @FindBy(id = "quantity_wanted")
-    WebElement quantity_wanted;
+    private WebElement quantity_wanted;
 
     @FindBy(id = "group_1")
-    WebElement setSize;
+    private WebElement setSize;
 
     @FindBy(name = "White")
-    WebElement whiteColor;
+    private WebElement whiteColor;
 
     @FindBy(id = "add_to_cart")
-    WebElement add_to_cart;
+    private WebElement add_to_cart;
 
     @FindBy(xpath = "//span[normalize-space()='Proceed to checkout']")
-    WebElement checkOut;
+    private WebElement checkOut;
 
     @FindBy(xpath = "//div[@class='wishlist']")
-    List<WebElement> addWishList;
+    private List<WebElement> addWishList;
 
     @FindBy(xpath = "//div[@class='fancybox-inner']")
-    WebElement fancyError;
+    private WebElement fancyError;
 
     @FindBy(id = "our_price_display")
-    WebElement price;
+    private WebElement price;
 
 
     public void userSelectsDress(String num) {

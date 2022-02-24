@@ -14,16 +14,16 @@ public class tshirtsPage {
     }
 
     @FindBy(xpath = "//a[normalize-space()='Faded Short Sleeve T-shirts']")
-    WebElement product;
+    private WebElement product;
 
     @FindBy(css = "div[class='right-block'] span[class='price product-price']")
-    WebElement price;
+    private WebElement price;
 
     @FindBy(id = "search_query_top")
-    WebElement searchProduct;
+    private WebElement searchProduct;
 
     @FindBy(name = "submit_search")
-    WebElement searchButton;
+    private WebElement searchButton;
 
     public String productName() {
         return product.getText().toUpperCase();

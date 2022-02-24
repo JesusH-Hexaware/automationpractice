@@ -14,14 +14,14 @@ public class shoppingShipping {
     }
 
     @FindBy(id = "cgv")
-    WebElement termsAndConditions;
+    private WebElement termsAndConditions;
+
+    @FindBy(css = "button[name='processCarrier'] span")
+    private WebElement shippingCheckout;
 
     public void userAcceptsTermsAndConditions() {
         termsAndConditions.click();
     }
-
-    @FindBy(css = "button[name='processCarrier'] span")
-    WebElement shippingCheckout;
 
     public shoppingPayment userClicksProceedToCheckout() {
         shippingCheckout.click();

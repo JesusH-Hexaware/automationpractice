@@ -21,16 +21,16 @@ public class shoppingCartSumary {
     }
 
     @FindBy(css = "a[class='button btn btn-default standard-checkout button-medium'] span")
-    WebElement summaryCheckout;
+    private WebElement summaryCheckout;
 
     @FindBy(xpath = "//input[@class='cart_quantity_input form-control grey']")
-    WebElement orderQuantity;
+    private WebElement orderQuantity;
 
     @FindBy(xpath = "//span[contains(@id, 'total_product_price')][1]")
-    WebElement productAmountTotal;
+    private WebElement productAmountTotal;
 
     @FindBy(xpath = "//td[@class='cart_total']")
-    List<WebElement> productAmountTotals;
+    private List<WebElement> productAmountTotals;
 
     public shoppingAddress userClicksProceedToCheckout() {
         summaryCheckout.click();
@@ -53,10 +53,5 @@ public class shoppingCartSumary {
         return productAmountTotal.getText();
     }
 
-//    public void userGetsProductAmountTotals(String s) {
-//        List<WebElement> totalsList = productAmountTotals;
-//        WebElement value = totalsList.get();
-//
-//    }
 
 }

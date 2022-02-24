@@ -15,70 +15,70 @@ public class createAccountPage {
     }
 
     @FindBy(id = "customer_firstname")
-    WebElement firstNameField;
+    private WebElement firstNameField;
 
     @FindBy(id = "customer_lastname")
-    WebElement lastNameField;
+    private WebElement lastNameField;
 
     @FindBy(id = "email")
-    WebElement emailField;
+    private WebElement emailField;
 
     @FindBy(id = "passwd")
-    WebElement passwordField;
+    private WebElement passwordField;
 
     @FindBy(id = "address1")
-    WebElement addressField;
+    private WebElement addressField;
 
     @FindBy(id = "city")
-    WebElement cityField;
+    private WebElement cityField;
 
     @FindBy(id = "id_state")
-    WebElement stateDropdown;
+    private WebElement stateDropdown;
 
     @FindBy(id = "postcode")
-    WebElement postcodeField;
+    private WebElement postcodeField;
 
     @FindBy(id = "phone_mobile")
-    WebElement phoneMobileField;
+    private WebElement phoneMobileField;
 
     @FindBy(id = "alias")
-    WebElement addressAliasField;
+    private WebElement addressAliasField;
 
     @FindBy(id = "submitAccount")
-    WebElement submitAccountBtn;
+    private WebElement submitAccountBtn;
 
     @FindBy(xpath = "//div[@class='alert alert-danger']")
-    WebElement getErrorAlert;
+    private WebElement getErrorAlert;
 
     @FindBy(xpath = "//li[normalize-space()='You must register at least one phone number.']")
-    WebElement errorAlertPhone;
+    private WebElement errorAlertPhone;
 
     @FindBy(xpath = "//b[normalize-space()='lastname']")
-    WebElement errorAlertLastname;
+    private WebElement errorAlertLastname;
 
     @FindBy(xpath = "//b[normalize-space()='firstname']")
-    WebElement errorAlertFirstname;
+    private WebElement errorAlertFirstname;
 
     @FindBy(xpath = "//b[normalize-space()='passwd']")
-    WebElement errorAlertPassword;
+    private WebElement errorAlertPassword;
 
     @FindBy(xpath = "//b[normalize-space()='address1']")
-    WebElement errorAlertAddress;
+    private WebElement errorAlertAddress;
 
     @FindBy(xpath = "//b[normalize-space()='city']")
-    WebElement errorAlertCity;
+    private WebElement errorAlertCity;
 
     @FindBy(xpath = "//li[contains(text(),'Zip/Postal')]")
-    WebElement errorAlertPostalcode;
+    private WebElement errorAlertPostalcode;
 
     @FindBy(xpath = "//li[contains(text(),'country requires')]")
-    WebElement errorAlertState;
+    private WebElement errorAlertState;
 
     @FindBy(xpath = "//b[normalize-space()='email']")
-    WebElement errorAlertEmail;
+    private WebElement errorAlertEmail;
 
     @FindBy(xpath = "//b[normalize-space()='phone_mobile']")
-    WebElement errorAlertMobilePhoneInvalid;
+    private WebElement errorAlertMobilePhoneInvalid;
 
     public void userTypesFirstName(String firstName) {
         firstNameField.sendKeys(firstName);

@@ -15,22 +15,22 @@ public class loginPage {
     }
 
     @FindBy(xpath = "//button[@id='SubmitCreate']")
-    WebElement CreateAccountBtn;
+    private WebElement CreateAccountBtn;
 
     @FindBy(xpath = "//input[@id='email_create']")
-    WebElement EmailCreate;
+    private WebElement EmailCreate;
 
     @FindBy(xpath = "//li[normalize-space()='Invalid email address.']")
-    WebElement createAccountError;
+    private WebElement createAccountError;
 
     @FindBy(id = "email")
-    WebElement loginEmail;
+    private WebElement loginEmail;
 
     @FindBy(id = "passwd")
-    WebElement password;
+    private WebElement password;
 
     @FindBy(id = "SubmitLogin")
-    WebElement signInButton;
+    private WebElement signInButton;
 
     public boolean verifyCreateAccountBtn(){
         return CreateAccountBtn.isDisplayed();
