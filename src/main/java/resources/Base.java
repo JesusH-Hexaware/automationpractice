@@ -30,7 +30,12 @@ public class Base {
         prop = new Properties();
         FileInputStream fileInputStream = new FileInputStream("src/main/java/resources/data.properties");
         prop.load(fileInputStream);
-        String browserName = prop.getProperty("browser");
+
+        //mvn test -Dbrowser=<browserName>
+
+        String browserName = System.getProperty("browser"); // to run from maven
+
+        //String browserName = prop.getProperty("browser"); // for use from the data.properties
 
         if (browserName.equals("chrome")) {
             System.setProperty("webdriver.chrome.driver", "src/main/driver/chromedriver");
