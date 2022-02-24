@@ -36,7 +36,7 @@ public class Listener extends Base implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        log.error("Failed test " + result.getName() + " screenshot captured!");
+        log.error("Failed test '" + result.getName() + "' from '" + (result.getMethod().getTestClass()) + "' screenshot captured!");
         extentTest.get().fail(result.getThrowable());
         WebDriver driver = null;
 
